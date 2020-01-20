@@ -1,0 +1,32 @@
+{
+	"text": {
+		"key": "message.settings"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "LANGUAGE",
+				"label":{
+					"key":"keyboard.language"
+				},
+				"next": "setting/language/language.json"
+			},
+			{
+				"id": "PROFILE",
+				"label":{
+					"key":"keyboard.profile"	
+				},
+				"next": "setting/profile/profile.json"
+			}
+		],
+		[
+			{
+				"id": "START",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "start.json"
+			}
+		]
+	]
+}

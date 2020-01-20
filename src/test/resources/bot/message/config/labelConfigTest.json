@@ -1,0 +1,25 @@
+{
+	"text":{
+		"key":"",
+		"argGenerationMethodPath":""
+	},
+	"callbacks":[
+		[
+			{
+				"label":{
+					"key":"label_key"
+				}				
+			},
+			{
+				"label":{
+					"text":"text"
+				}				
+			},
+			{
+				"label":{
+					"methodPath":"method.path"
+				}				
+			}
+		]
+	]
+}

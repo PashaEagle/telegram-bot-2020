@@ -1,0 +1,17 @@
+{
+	"text": {
+		"key": "message.startingKeyboard",
+		"argGenerationMethodPath": "StartArgGenerator.getArgs"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "settings",
+				"label": {
+					"key":"keyboard.settings"
+				},
+				"next": "setting/settings.json"
+			}
+		]
+	]
+}

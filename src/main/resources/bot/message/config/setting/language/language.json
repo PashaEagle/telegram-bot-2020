@@ -1,0 +1,34 @@
+{
+	"text": {
+		"key": "message.language"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "UKRAINE",
+				"label": {
+					"key":"keyboard.ukraine"
+				},
+				"action": "setting.language.LanguageActions.populateUkraine",
+				"next": "setting/settings.json"
+			},
+			{
+				"id": "ENGLISH",
+				"label": {
+					"key":"keyboard.english"
+				},
+				"action": "setting.language.LanguageActions.populateEnglish",
+				"next": "setting/settings.json"
+			}
+		],
+		[
+			{
+				"label": {
+					"key":"keyboard.back"
+				},
+				"id": "SETTINGS",
+				"next": "setting/settings.json"
+			}
+		]
+	]
+}

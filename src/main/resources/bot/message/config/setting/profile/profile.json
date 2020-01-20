@@ -1,0 +1,38 @@
+{
+	"text": {
+		"key": "message.profile",
+		"argGenerationMethodPath": "setting.profile.ProfileArgGenerator.getArgs"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "PROFILE/NAME",
+				"label": {
+					"key":"keyboard.fullName"
+				},
+				"action": "setting.profile.ProfileActions.editName",
+				"inputDataValidationMethodPath": "setting.profile.ProfileValidations.validateName",
+				"next": "setting/profile/name/name.json"
+			},
+			{
+				"id": "PROFILE/PHONE",
+				"label": {
+					"key":"keyboard.phone"
+				},
+				"action": "setting.profile.ProfileActions.editPhone",
+				"inputDataValidationMethodPath": "setting.profile.ProfileValidations.validatePhone",
+                                "dynamicValidationMethodPath":"setting.profile.ProfileDynamicButtonValidations.validatePhoneButton",
+				"next": "setting/profile/phone/phone.json"
+			}
+		],
+		[
+			{
+				"id": "SETTINGS",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "setting/settings.json"
+			}
+		]
+	]
+}

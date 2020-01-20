@@ -1,0 +1,17 @@
+{
+	"text": {
+		"key": "message.phone.edit",
+		"argGenerationMethodPath": "setting.profile.ProfileArgGenerator.getPhone"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "PROFILE",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "setting/profile/profile.json"
+			}
+		]
+	]
+}

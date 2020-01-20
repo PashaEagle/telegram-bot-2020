@@ -1,0 +1,15 @@
+{
+	"text": {
+		"argGenerationMethodPath": "StartArgGenerator.getArgs"
+	},
+	"callbacks": [
+		[
+			{
+				"label": {
+					"key":"keyboard.settings"
+				},
+				"action": "StartActions.SETTINGS_ACTION"
+			}
+		]
+	]
+}

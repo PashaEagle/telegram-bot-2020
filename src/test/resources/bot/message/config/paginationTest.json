@@ -1,0 +1,19 @@
+{
+	"text": {
+		"key": "message.pagination",
+		"argGenerationMethodPath": "pagination.PaginationArgGenerator.getArgs"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "PAGINATION_PLACEHOLDER",
+				"type": "PAGINATION",
+				"label": {
+					"methodPath": "pagination.PaginationTextGenerator.getText"
+				},
+				"action": "util.PaginationDefaultActions.selectPaginationValueAction",
+				"next": "pagination/selected/selectedPagination.json"
+			}
+		]
+	]
+}
