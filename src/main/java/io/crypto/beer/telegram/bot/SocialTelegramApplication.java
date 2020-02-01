@@ -9,12 +9,12 @@ import org.telegram.telegrambots.ApiContextInitializer;
 @EnableMongoRepositories
 @EnableScheduling
 @SpringBootApplication
-public class CryptobeerApplication {
+public class SocialTelegramApplication {
 
     public static void main(String[] args) {
         ApiContextInitializer.init();
 
-        SpringApplication.run(CryptobeerApplication.class, args);
+        SpringApplication.run(SocialTelegramApplication.class, args);
     }
 
 }
