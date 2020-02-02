@@ -21,7 +21,7 @@ public final class ProfileActions {
         profile.setFullName(m.getSession().getInputData());
 
         AFTER_ACTION_SUCCESS.accept(m, NAME_EDITED.getKey());
-        log.info("Validation success -> name changed: %s", profile.getFullName());
+        log.info("Validation success -> name changed: {}", profile.getFullName());
     }
 
     public static void editPhone(Message m, ApplicationContext ctx) {

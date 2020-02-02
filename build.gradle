@@ -29,7 +29,9 @@ dependencies {
 	implementation "org.glassfish.jersey.bundles.repackaged:jersey-guava:2.6"
 	
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	
+
+	compile 'org.brunocvcunha.instagram4j:instagram4j:1.13'
+
 	testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.2'
 	testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: '2.0.2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

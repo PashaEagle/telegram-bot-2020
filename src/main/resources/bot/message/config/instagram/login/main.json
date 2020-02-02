@@ -1,0 +1,47 @@
+{
+	"text": {
+		"key": "message.instagram.login",
+		"argGenerationMethodPath": "instagram.login.LoginArgGenerator.getArgs"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "INSTAGRAM/LOGIN/NAME",
+				"label": {
+					"key":"keyboard.instagram.login.name"
+				},
+				"next": "instagram/login/edit/name.json",
+				"action": "instagram.login.LoginActions.editName",
+				"inputDataValidationMethodPath": "instagram.login.LoginValidations.validateName"
+			},
+			{
+				"id": "INSTAGRAM/LOGIN/PASSWORD",
+				"label": {
+					"key":"keyboard.instagram.login.password"
+				},
+				"next": "instagram/login/edit/password.json",
+				"action": "instagram.login.LoginActions.editPassword",
+				"inputDataValidationMethodPath": "instagram.login.LoginValidations.validatePassword"
+			}
+		],
+		[
+			{
+				"id": "INSTAGRAM/LOGIN/AUTH",
+				"label": {
+					"key":"keyboard.instagram.login.auth"
+				},
+				"next": "instagram/login/confirmation.json",
+				"action": "instagram.login.LoginActions.authorize"
+			}
+		],
+		[
+			{
+				"id": "INSTAGRAM/START",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "instagram/start.json"
+			}
+		]
+	]
+}

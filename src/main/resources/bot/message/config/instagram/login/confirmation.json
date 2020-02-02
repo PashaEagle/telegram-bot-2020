@@ -1,0 +1,17 @@
+{
+	"text": {
+		"key": "message.instagram.login.confirmation",
+		"argGenerationMethodPath": "instagram.login.LoginArgGenerator.getConfirmationLink"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "INSTAGRAM/LOGIN",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "instagram/login/main.json"
+			}
+		]
+	]
+}

@@ -13,9 +13,9 @@
 				"next": "setting/settings.json"
 			},
 			{
-				"id": "INSTAGRAM",
+				"id": "INSTAGRAM/START",
 				"label": {
-					"key": "keyboard.instagram"
+					"key": "keyboard.instagram.start"
 				},
 				"next": "instagram/start.json"
 			}

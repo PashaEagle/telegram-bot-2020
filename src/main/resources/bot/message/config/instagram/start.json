@@ -1,15 +1,24 @@
 {
 	"text": {
-		"key": "message.instagram"
+		"key": "message.instagram.start"
 	},
 	"callbacks": [
 		[
 			{
-				"id": "LOGIN",
+				"id": "INSTAGRAM/LOGIN",
 				"label": {
-					"key": "keyboard.login"
+					"key": "keyboard.instagram.login"
 				},
-				"next": "instagram/login/login.json"
+				"next": "instagram/login/main.json"
+			}
+		],
+		[
+			{
+				"id": "START",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "start.json"
 			}
 		]
 	]
