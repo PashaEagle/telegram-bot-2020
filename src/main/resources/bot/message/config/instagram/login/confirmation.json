@@ -6,6 +6,14 @@
 	"callbacks": [
 		[
 			{
+				"id": "INSTAGRAM/LOGIN/CONFIRMATION-CHECK",
+				"label": {
+					"key":"keyboard.instagram.login.confirmation.check"
+				},
+				"next": "instagram/profile/main.json",
+				"action": "instagram.login.LoginActions.check"
+			},
+			{
 				"id": "INSTAGRAM/LOGIN",
 				"label": {
 					"key":"keyboard.back"

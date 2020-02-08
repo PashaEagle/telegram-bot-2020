@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
+import io.crypto.beer.telegram.bot.business.instagram.entity.InstagramSession;
 import io.crypto.beer.telegram.bot.engine.entity.config.MessageConfig;
 import io.crypto.beer.telegram.bot.engine.entity.pagination.PaginationSession;
 import lombok.Builder;
@@ -24,4 +25,6 @@ public class Session {
     private Button activeButton;
     @Builder.Default
     private Set<Button> currentButtons = new HashSet<>();
+
+    private InstagramSession instagramSession;
 }

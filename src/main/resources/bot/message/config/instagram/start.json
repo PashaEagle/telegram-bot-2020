@@ -9,7 +9,8 @@
 				"label": {
 					"key": "keyboard.instagram.login"
 				},
-				"next": "instagram/login/main.json"
+				"next": "instagram/login/main.json",
+				"action": "instagram.login.LoginActions.startLoginAction"
 			}
 		],
 		[

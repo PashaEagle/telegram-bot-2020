@@ -1,0 +1,16 @@
+{
+	"text": {
+		"key": "message.instagram.profile.start"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "START",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "start.json"
+			}
+		]
+	]
+}
