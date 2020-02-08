@@ -1,0 +1,17 @@
+{
+	"text": {
+		"key": "message.instagram.login.error",
+		"argGenerationMethodPath": "instagram.login.LoginArgGenerator.getErrorMessage"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "INSTAGRAM/LOGIN",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "instagram/login/main.json"
+			}
+		]
+	]
+}

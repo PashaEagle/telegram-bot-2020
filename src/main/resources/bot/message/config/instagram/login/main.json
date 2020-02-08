@@ -30,7 +30,7 @@
 				"label": {
 					"key":"keyboard.instagram.login.auth"
 				},
-				"next": "instagram/login/confirmation.json",
+				"next": "instagram/profile/main.json",
 				"action": "instagram.login.LoginActions.authorize"
 			}
 		],

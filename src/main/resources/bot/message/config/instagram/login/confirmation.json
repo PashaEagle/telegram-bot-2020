@@ -1,7 +1,6 @@
 {
 	"text": {
-		"key": "message.instagram.login.confirmation",
-		"argGenerationMethodPath": "instagram.login.LoginArgGenerator.getConfirmationLink"
+		"key": "message.instagram.login.confirmation"
 	},
 	"callbacks": [
 		[
