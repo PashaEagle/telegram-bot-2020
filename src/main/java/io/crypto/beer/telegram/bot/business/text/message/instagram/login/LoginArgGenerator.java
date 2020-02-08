@@ -17,11 +17,6 @@ public final class LoginArgGenerator {
         return new Object[] { session.getInstagramSession().getAccountName(), session.getInstagramSession().getPassword()};
     }
 
-    public static Object[] getConfirmationLink(Session session) {
-        log.info("Call LoginArgGenerator method getConfirmationLink");
-        return new Object[] { session.getInstagramSession().getConfirmationUrl() };
-    }
-
     public static Object[] getErrorMessage(Session session) {
         log.info("Call LoginArgGenerator method getErrorMessage");
         return new Object[] { ERROR_MESSAGE };

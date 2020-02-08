@@ -199,6 +199,7 @@ public final class LoginActions {
 
             ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s", KeyboardPath.BASE_PATH.getPath(),
                     KeyboardPath.LOGIN_SUCCESS.getPath()));
+            m.getSession().getInstagramSession().setInstagramLoginResult(instagramLoginResult);
         } else if (Objects.equals(instagramLoginResult.getStatus(), "ok")) {
             // Logged in user not exists
             setNewKeyboardWithErrorAndSetMessage(m, "■Logged in user not exists.");

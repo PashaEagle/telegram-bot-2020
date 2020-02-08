@@ -14,26 +14,6 @@
 				"action": "instagram.profile.ProfileActions.findUser"
 			},
 			{
-				"id": "INSTAGRAM/PROFILE/FIND-POST",
-				"label": {
-					"key":"keyboard.instagram.profile.find-post"
-				},
-				"next": "instagram/profile/find-post.json",
-				"action": "instagram.profile.ProfileActions.findPost"
-			}
-		],
-		[
-			{
-				"id": "INSTAGRAM/PROFILE/MAKE-POST",
-				"label": {
-					"key":"keyboard.instagram.profile.make-post"
-				},
-				"next": "instagram/profile/make-post.json",
-				"action": "instagram.profile.ProfileActions.makePost"
-			}
-		],
-		[
-			{
 				"id": "START",
 				"label": {
 					"key":"keyboard.back"
