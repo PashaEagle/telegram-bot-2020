@@ -6,15 +6,16 @@
 	"callbacks": [
 		[
 			{
-				"id": "INSTAGRAM/PROFILE/FIND-USER",
+				"id": "INSTAGRAM/PROFILE/FIND-USER-INPUT",
 				"label": {
 					"key":"keyboard.instagram.profile.find-user"
 				},
-				"next": "instagram/profile/find-user.json",
-				"action": "instagram.profile.ProfileActions.findUser"
+				"next": "instagram/profile/input/find-user-input.json",
+				"action": "instagram.profile.ProfileActions.findUser",
+				"inputDataValidationMethodPath": "instagram.profile.ProfileValidations.validateUsername"
 			},
 			{
-				"id": "INSTAGRAM/PROFILE/FIND-POST",
+				"id": "INSTAGRAM/PROFILE/FIND-POST-INPUT",
 				"label": {
 					"key":"keyboard.instagram.profile.find-post"
 				},

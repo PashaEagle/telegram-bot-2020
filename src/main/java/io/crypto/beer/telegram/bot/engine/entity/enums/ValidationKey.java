@@ -5,7 +5,8 @@ public enum ValidationKey {
         NAME_EDITED("message.name.edited"),
         PHONE_EDITED("message.phone.edited"),
         INSTAGRAM_NAME_EDITED("message.instagram.login.name.edited"),
-        INSTAGRAM_PASSWORD_EDITED("message.instagram.login.password.edited");
+        INSTAGRAM_PASSWORD_EDITED("message.instagram.login.password.edited"),
+        INSTAGRAM_USERNAME_FOR_SEARCH_EDITED("message.instagram.profile.find-user-input.edited");
 
     private String key;
 

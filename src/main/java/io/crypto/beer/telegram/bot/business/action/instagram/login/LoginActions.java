@@ -35,16 +35,20 @@ public final class LoginActions {
 
     public static void editName(Message m, ApplicationContext ctx) {
         log.info("Call LoginActions method editName");
+
         m.getSession().getInstagramSession().setAccountName(m.getSession().getInputData());
-        AFTER_ACTION_SUCCESS.accept(m, INSTAGRAM_NAME_EDITED.getKey());
         log.info("Validation success -> name changed: {}", m.getSession().getInstagramSession().getAccountName());
+        ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s", KeyboardPath.BASE_PATH.getPath(),
+                KeyboardPath.LOGIN_MAIN_PAGE.getPath()));
     }
 
     public static void editPassword(Message m, ApplicationContext ctx) {
         log.info("Call LoginActions method editPassword");
+
         m.getSession().getInstagramSession().setPassword(m.getSession().getInputData());
-        AFTER_ACTION_SUCCESS.accept(m, INSTAGRAM_PASSWORD_EDITED.getKey());
         log.info("Validation success -> password changed: {}", m.getSession().getInstagramSession().getPassword());
+        ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s", KeyboardPath.BASE_PATH.getPath(),
+                KeyboardPath.LOGIN_MAIN_PAGE.getPath()));
     }
 
     public static void startLoginAction(Message m, ApplicationContext ctx) {
@@ -54,6 +58,9 @@ public final class LoginActions {
             m.getSession().setInstagramSession(InstagramSession.builder().instagram4j(Instagram4j.builder().build()).build());
             log.info("New instagram session object set");
         }
+
+        m.getSession().getInstagramSession().setAccountName("pasha__eagle");
+        m.getSession().getInstagramSession().setPassword("enderman852456");
     }
 
     public static void check(Message m, ApplicationContext ctx) {

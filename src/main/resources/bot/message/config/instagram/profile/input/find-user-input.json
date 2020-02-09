@@ -1,0 +1,16 @@
+{
+	"text": {
+		"key": "message.instagram.profile.find-user-input"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "INSTAGRAM/PROFILE/MAIN",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "instagram/profile/main.json"
+			}
+		]
+	]
+}

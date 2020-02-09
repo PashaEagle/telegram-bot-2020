@@ -1,0 +1,35 @@
+{
+	"text": {
+		"key": "message.instagram.profile.find-user-view",
+		"argGenerationMethodPath": "instagram.profile.ProfileArgGenerator.getFoundUserArgs"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/FOLLOW",
+				"label": {
+					"key":"keyboard.instagram.profile.find-user.follow"
+				},
+				"next": "instagram/profile/view/find-user-view.json",
+				"action": "instagram.profile.ProfileActions.followUser"
+			},
+			{
+				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/SEE-FOLLOWERS",
+				"label": {
+					"key":"keyboard.instagram.profile.find-user.see-followers"
+				},
+				"next": "instagram/profile/view/find-user-view.json",
+				"action": "instagram.profile.ProfileActions.seeFollowers"
+			}
+		],
+		[
+			{
+				"id": "INSTAGRAM/PROFILE/MAIN",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "instagram/profile/main.json"
+			}
+		]
+	]
+}

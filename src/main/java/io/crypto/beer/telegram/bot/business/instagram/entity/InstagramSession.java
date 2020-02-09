@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import org.brunocvcunha.instagram4j.Instagram4j;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramLoginResult;
+import org.brunocvcunha.instagram4j.requests.payload.InstagramUser;
 
 @Data
 @Builder
@@ -14,4 +15,5 @@ public class InstagramSession {
     private String password;
 
     private InstagramLoginResult instagramLoginResult;
+    private InstagramUser instagramUser;
 }
