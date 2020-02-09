@@ -14,24 +14,19 @@ import java.util.Set;
 
 @Data
 @Builder
-@Document("session")
+@Document("account")
 public class AccountModel {
 
     @Id
     private String id;
     @Indexed(unique = true)
     private Long chatId;
-    private String locale;
-    private TelegramProfile telegramProfile;
-    private String inputData;
-    private String callbackData;
-    private Integer lastMessageId;
-    private MessageConfig messageConfig;
-    private PaginationSession paginationSession;
-    private boolean authorized;
-    private Button activeButton;
-    private Set<Button> currentButtons;
+
+    private String accountName;
+
+    private String password;
 
     private Long createdDate;
+
     private Long lastModifiedDate;
 }

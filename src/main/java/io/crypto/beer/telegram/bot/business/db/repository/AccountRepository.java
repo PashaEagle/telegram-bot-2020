@@ -12,9 +12,5 @@ import java.util.Optional;
 @Repository
 public interface AccountRepository extends MongoRepository<AccountModel, String> {
 
-    Optional<SessionModel> findByChatId(Long chatId);
-
-    List<SessionModel> findByLastModifiedDateLessThan(Long lowestAllowedModifiedDate, Pageable page);
-
-    void deleteByChatIdIn(List<Long> chatIdList);
+    AccountModel getByChatId(Long chatId);
 }

@@ -1,6 +1,8 @@
 package io.crypto.beer.telegram.bot.business.action.instagram.login;
 
 import io.crypto.beer.telegram.bot.business.constant.KeyboardPath;
+import io.crypto.beer.telegram.bot.business.db.model.AccountModel;
+import io.crypto.beer.telegram.bot.business.db.repository.AccountRepository;
 import io.crypto.beer.telegram.bot.business.instagram.entity.InstagramSession;
 import io.crypto.beer.telegram.bot.business.text.message.instagram.login.LoginArgGenerator;
 import io.crypto.beer.telegram.bot.engine.entity.Message;
@@ -20,11 +22,6 @@ import org.springframework.context.ApplicationContext;
 
 import java.io.IOException;
 import java.util.Objects;
-import java.util.Scanner;
-
-import static io.crypto.beer.telegram.bot.engine.entity.enums.ValidationKey.INSTAGRAM_NAME_EDITED;
-import static io.crypto.beer.telegram.bot.engine.entity.enums.ValidationKey.INSTAGRAM_PASSWORD_EDITED;
-import static io.crypto.beer.telegram.bot.engine.validation.ValidateConsumers.AFTER_ACTION_SUCCESS;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -59,8 +56,17 @@ public final class LoginActions {
             log.info("New instagram session object set");
         }
 
-        m.getSession().getInstagramSession().setAccountName("pasha__eagle");
-        m.getSession().getInstagramSession().setPassword("enderman852456");
+        AccountRepository accountRepository = ctx.getBean(AccountRepository.class);
+        AccountModel account = accountRepository.getByChatId(m.getSession().getTelegramProfile().getTelegramId());
+
+        if (account != null){
+            m.getSession().getInstagramSession().setAccountName(account.getAccountName());
+            m.getSession().getInstagramSession().setPassword(account.getPassword());
+        }
+        else {
+            m.getSession().getInstagramSession().setAccountName("Not set");
+            m.getSession().getInstagramSession().setPassword("Not set");
+        }
     }
 
     public static void check(Message m, ApplicationContext ctx) {
@@ -119,7 +125,7 @@ public final class LoginActions {
                         .sendRequest(new InstagramSendSecurityCodeRequest(challengeUrl, securityCode));
 
                 // Check login response
-                checkInstagramLoginResult(instagram4j, securityCodeInstagramLoginResult, false, m);
+                checkInstagramLoginResult(instagram4j, securityCodeInstagramLoginResult, true, m, ctx);
             } else if (Objects.equals(getChallengeResult.getStep_name(), "verify_email")) {
                 // Security code has been sent to E-mail
                 System.out.println("■Security code has been sent to E-mail");
@@ -178,7 +184,7 @@ public final class LoginActions {
             // Get login response
             instagramLoginResult = instagram4j.login();
             // Check login response
-            checkInstagramLoginResult(instagram4j, instagramLoginResult, true, m);
+            checkInstagramLoginResult(instagram4j, instagramLoginResult, true, m, ctx);
         } catch (IOException e) {
             log.error("Error when try login");
             e.printStackTrace();
@@ -197,7 +203,7 @@ public final class LoginActions {
      * @throws Exception
      */
     public static void checkInstagramLoginResult(Instagram4j instagram4j, InstagramLoginResult instagramLoginResult,
-                                                 boolean doReAuthentication, Message m) throws Exception {
+                                                 boolean doReAuthentication, Message m, ApplicationContext ctx) throws Exception {
         if (Objects.equals(instagramLoginResult.getStatus(), "ok")
                 && instagramLoginResult.getLogged_in_user() != null) {
             // Login success
@@ -207,6 +213,14 @@ public final class LoginActions {
             ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s", KeyboardPath.BASE_PATH.getPath(),
                     KeyboardPath.LOGIN_SUCCESS.getPath()));
             m.getSession().getInstagramSession().setInstagramLoginResult(instagramLoginResult);
+            AccountRepository accountRepository = ctx.getBean(AccountRepository.class);
+            AccountModel accountModel = AccountModel.builder()
+                    .chatId(m.getSession().getTelegramProfile().getTelegramId())
+                    .accountName(m.getSession().getInstagramSession().getAccountName())
+                    .password(m.getSession().getInstagramSession().getPassword())
+                    .build();
+            accountRepository.save(accountModel);
+
         } else if (Objects.equals(instagramLoginResult.getStatus(), "ok")) {
             // Logged in user not exists
             setNewKeyboardWithErrorAndSetMessage(m, "■Logged in user not exists.");
