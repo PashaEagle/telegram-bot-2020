@@ -1,6 +1,5 @@
 package io.crypto.beer.telegram.bot.business.text.message.instagram.login;
 
-import io.crypto.beer.telegram.bot.business.instagram.entity.InstagramSession;
 import io.crypto.beer.telegram.bot.engine.entity.Session;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

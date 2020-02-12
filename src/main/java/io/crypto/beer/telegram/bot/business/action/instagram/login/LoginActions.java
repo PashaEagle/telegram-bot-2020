@@ -59,11 +59,10 @@ public final class LoginActions {
         AccountRepository accountRepository = ctx.getBean(AccountRepository.class);
         AccountModel account = accountRepository.getByChatId(m.getSession().getTelegramProfile().getTelegramId());
 
-        if (account != null){
+        if (account != null) {
             m.getSession().getInstagramSession().setAccountName(account.getAccountName());
             m.getSession().getInstagramSession().setPassword(account.getPassword());
-        }
-        else {
+        } else {
             m.getSession().getInstagramSession().setAccountName("Not set");
             m.getSession().getInstagramSession().setPassword("Not set");
         }
@@ -210,16 +209,20 @@ public final class LoginActions {
             System.out.println("■Login success.");
             System.out.println(instagramLoginResult.getLogged_in_user());
 
-            ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s", KeyboardPath.BASE_PATH.getPath(),
+            ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s",
+                    KeyboardPath.BASE_PATH.getPath(),
                     KeyboardPath.LOGIN_SUCCESS.getPath()));
             m.getSession().getInstagramSession().setInstagramLoginResult(instagramLoginResult);
             AccountRepository accountRepository = ctx.getBean(AccountRepository.class);
-            AccountModel accountModel = AccountModel.builder()
-                    .chatId(m.getSession().getTelegramProfile().getTelegramId())
-                    .accountName(m.getSession().getInstagramSession().getAccountName())
-                    .password(m.getSession().getInstagramSession().getPassword())
-                    .build();
-            accountRepository.save(accountModel);
+            if (accountRepository.getByChatId(m.getSession().getTelegramProfile().getTelegramId()) != null) {
+                AccountModel accountModel = AccountModel.builder()
+                        .chatId(m.getSession().getTelegramProfile().getTelegramId())
+                        .accountName(m.getSession().getInstagramSession().getAccountName())
+                        .password(m.getSession().getInstagramSession().getPassword())
+                        .build();
+                accountRepository.save(accountModel);
+            }
+
 
         } else if (Objects.equals(instagramLoginResult.getStatus(), "ok")) {
             // Logged in user not exists
