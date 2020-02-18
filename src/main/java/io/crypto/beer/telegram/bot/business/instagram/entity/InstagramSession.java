@@ -16,4 +16,5 @@ public class InstagramSession {
 
     private InstagramLoginResult instagramLoginResult;
     private InstagramUser instagramUser;
+    private Boolean currentInstagramUserFollowed;
 }

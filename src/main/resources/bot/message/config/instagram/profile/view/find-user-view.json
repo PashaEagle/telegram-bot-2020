@@ -8,10 +8,10 @@
 			{
 				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/FOLLOW",
 				"label": {
-					"key":"keyboard.instagram.profile.find-user.follow"
+					"methodPath":"instagram.profile.FindUserViewArgGenerator.getFollowButtonText"
 				},
 				"next": "instagram/profile/view/find-user-view.json",
-				"action": "instagram.profile.ProfileActions.followUser"
+				"action": "instagram.profile.FindUserViewActions.followUser"
 			},
 			{
 				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/SEE-FOLLOWERS",
@@ -19,7 +19,7 @@
 					"key":"keyboard.instagram.profile.find-user.see-followers"
 				},
 				"next": "instagram/profile/view/find-user-view.json",
-				"action": "instagram.profile.ProfileActions.seeFollowers"
+				"action": "instagram.profile.FindUserViewActions.seeFollowers"
 			}
 		],
 		[

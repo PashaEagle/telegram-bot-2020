@@ -213,16 +213,20 @@ public final class LoginActions {
                     KeyboardPath.BASE_PATH.getPath(),
                     KeyboardPath.LOGIN_SUCCESS.getPath()));
             m.getSession().getInstagramSession().setInstagramLoginResult(instagramLoginResult);
+
             AccountRepository accountRepository = ctx.getBean(AccountRepository.class);
-            if (accountRepository.getByChatId(m.getSession().getTelegramProfile().getTelegramId()) != null) {
-                AccountModel accountModel = AccountModel.builder()
+
+            AccountModel accountModel =
+                    accountRepository.getByChatId(m.getSession().getTelegramProfile().getTelegramId());
+            if (accountModel == null) {
+                accountModel = AccountModel.builder()
                         .chatId(m.getSession().getTelegramProfile().getTelegramId())
                         .accountName(m.getSession().getInstagramSession().getAccountName())
                         .password(m.getSession().getInstagramSession().getPassword())
                         .build();
-                accountRepository.save(accountModel);
             }
 
+            accountRepository.save(accountModel);
 
         } else if (Objects.equals(instagramLoginResult.getStatus(), "ok")) {
             // Logged in user not exists
