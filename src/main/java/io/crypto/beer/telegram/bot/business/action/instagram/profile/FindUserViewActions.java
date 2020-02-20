@@ -46,6 +46,8 @@ public final class FindUserViewActions {
 
         //Works only for public accounts now
         //Here will be check if account private and not followed then show error to user
-        //Else redirect to `see followers view` page
+        //Else show followers one by one
+
+        //maybe hashmap?
     }
 }
