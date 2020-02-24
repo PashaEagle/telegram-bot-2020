@@ -14,12 +14,12 @@ import java.io.IOException;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class FindUserViewActions {
+public final class FindPostViewActions {
 
     static Instagram4j instagram4j;
 
-    public static void followUser(Message m, ApplicationContext ctx) {
-        log.info("Call FindUserViewActions method followUser");
+    public static void likePost(Message m, ApplicationContext ctx) {
+        log.info("Call FindPostViewActions method likePost");
         instagram4j = m.getSession().getInstagramSession().getInstagram4j();
 
         //Works only for public accounts now
@@ -43,11 +43,5 @@ public final class FindUserViewActions {
     public static void seeFollowers(Message m, ApplicationContext ctx) {
         log.info("Call FindUserViewActions method seeFollowers");
         instagram4j = m.getSession().getInstagramSession().getInstagram4j();
-
-        //Works only for public accounts now
-        //Here will be check if account private and not followed then show error to user
-        //Else show followers one by one
-
-        //maybe hashmap?
     }
 }

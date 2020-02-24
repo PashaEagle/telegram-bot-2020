@@ -41,4 +41,16 @@ public final class ProfileArgGenerator {
                 "https://www.instagram.com/" + session.getInstagramSession().getInstagramUser().getUsername()
         };
     }
+
+    public static Object[] getFoundPostArgs(Session session) {
+        log.info("Call ProfileArgGenerator method getFoundPostArgs");
+        return new Object[]{
+
+                session.getInstagramSession().getCurrentPost().getImage_versions2().getCandidates().get(0).getUrl(),
+                session.getInstagramSession().getCurrentPost().getComment_count(),
+                session.getInstagramSession().getCurrentPost().getCaption().getText(),
+                session.getInstagramSession().getCurrentPost().getUser().getUsername(),
+
+        };
+    }
 }

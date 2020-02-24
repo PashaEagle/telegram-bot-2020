@@ -13,4 +13,9 @@ public final class ProfileValidations {
 
         System.out.println("Some empty validation for username..");
     }
+
+    public static void validatePostHashTag(Message m, ApplicationContext ctx) {
+
+        System.out.println("Some empty validation for hashtag..");
+    }
 }

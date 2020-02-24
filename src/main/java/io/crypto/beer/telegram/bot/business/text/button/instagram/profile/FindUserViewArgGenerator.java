@@ -41,18 +41,18 @@ public final class FindUserViewArgGenerator {
 
             if (followingHim){
                 result = "❌ Unfollow";
-                m.getSession().getInstagramSession().setCurrentInstagramUserFollowed(true);
+                m.getSession().getInstagramSession().setCurrentUserFollowed(true);
             }
             else{
                 result = "✅ Follow";
-                m.getSession().getInstagramSession().setCurrentInstagramUserFollowed(false);
+                m.getSession().getInstagramSession().setCurrentUserFollowed(false);
             }
 
         } catch (IOException e) {
             System.out.println("Some error occurred while getting or processing all followings" + instagramUser.getUsername());
             e.printStackTrace();
             result = "❔ Unknown";
-            m.getSession().getInstagramSession().setCurrentInstagramUserFollowed(false);
+            m.getSession().getInstagramSession().setCurrentUserFollowed(false);
         }
 
         return result;

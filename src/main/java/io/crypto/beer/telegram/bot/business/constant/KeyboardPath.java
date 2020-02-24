@@ -15,7 +15,9 @@ public enum KeyboardPath {
     LOGIN_SUCCESS("instagram/profile/main.json"),
 
     FIND_USER_INPUT("instagram/profile/input/find-user-input.json"),
-    FIND_USER_VIEW("instagram/profile/view/find-user-view.json");
+    FIND_POST_INPUT("instagram/profile/input/find-post-input.json"),
+    FIND_USER_VIEW("instagram/profile/view/find-user-view.json"),
+    FIND_POST_VIEW("instagram/profile/view/find-post-view.json");
 
     private String path;
 }

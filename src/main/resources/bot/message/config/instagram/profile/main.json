@@ -13,14 +13,17 @@
 				"next": "instagram/profile/input/find-user-input.json",
 				"action": "instagram.profile.ProfileActions.findUser",
 				"inputDataValidationMethodPath": "instagram.profile.ProfileValidations.validateUsername"
-			},
+			}
+		],
+		[
 			{
 				"id": "INSTAGRAM/PROFILE/FIND-POST-INPUT",
 				"label": {
 					"key":"keyboard.instagram.profile.find-post"
 				},
-				"next": "instagram/profile/find-post.json",
-				"action": "instagram.profile.ProfileActions.findPost"
+				"next": "instagram/profile/input/find-post-input.json",
+				"action": "instagram.profile.ProfileActions.findPost",
+				"inputDataValidationMethodPath": "instagram.profile.ProfileValidations.validatePostHashTag"
 			}
 		],
 		[

@@ -3,6 +3,7 @@ package io.crypto.beer.telegram.bot.business.instagram.entity;
 import lombok.Builder;
 import lombok.Data;
 import org.brunocvcunha.instagram4j.Instagram4j;
+import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedItem;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramLoginResult;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramUser;
 
@@ -16,5 +17,6 @@ public class InstagramSession {
 
     private InstagramLoginResult instagramLoginResult;
     private InstagramUser instagramUser;
-    private Boolean currentInstagramUserFollowed;
+    private Boolean currentUserFollowed;
+    private InstagramFeedItem currentPost;
 }

@@ -1,0 +1,35 @@
+{
+	"text": {
+		"key": "message.instagram.profile.find-post-view",
+		"argGenerationMethodPath": "instagram.profile.ProfileArgGenerator.getFoundPostArgs"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "INSTAGRAM/PROFILE/FIND-POST-VIEW/LIKE",
+				"label": {
+					"methodPath":"instagram.profile.FindPostViewArgGenerator.getLikeButtonText"
+				},
+				"next": "instagram/profile/view/find-post-view.json",
+				"action": "instagram.profile.FindPostViewActions.likePost"
+			},
+			{
+				"id": "INSTAGRAM/PROFILE/FIND-POST-VIEW/SEE-AUTHOR",
+				"label": {
+					"key":"keyboard.instagram.profile.find-post.see-author"
+				},
+				"next": "instagram/profile/view/find-post-view.json",
+				"action": "instagram.profile.FindPostViewActions.seeAuthor"
+			}
+		],
+		[
+			{
+				"id": "INSTAGRAM/PROFILE/MAIN",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "instagram/profile/main.json"
+			}
+		]
+	]
+}

@@ -8,8 +8,13 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.brunocvcunha.instagram4j.Instagram4j;
 import org.brunocvcunha.instagram4j.requests.InstagramSearchUsernameRequest;
+import org.brunocvcunha.instagram4j.requests.InstagramTagFeedRequest;
+import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedItem;
+import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedResult;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramSearchUsernameResult;
 import org.springframework.context.ApplicationContext;
+
+import java.io.IOException;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -43,10 +48,21 @@ public final class ProfileActions {
         }
     }
 
-    public static void findPost(Message m, ApplicationContext ctx) {
+    public static void findPost(Message m, ApplicationContext ctx) throws IOException {
         log.info("Call ProfileActions method findPost");
 
+        String hashtag = m.getSession().getInputData();
+        instagram4j = m.getSession().getInstagramSession().getInstagram4j();
 
+        InstagramFeedResult tagFeed = instagram4j.sendRequest(new InstagramTagFeedRequest(hashtag));
+        for (InstagramFeedItem feedResult : tagFeed.getItems()) {
+            System.out.println("Post ID: " + feedResult.getPk());
+        }
+
+        m.getSession().getInstagramSession().setCurrentPost(tagFeed.getItems().get(0));
+        ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s",
+                KeyboardPath.BASE_PATH.getPath(),
+                KeyboardPath.FIND_POST_VIEW.getPath()));
     }
 
     public static void makePost(Message m, ApplicationContext ctx) {
