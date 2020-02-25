@@ -4,6 +4,7 @@ import io.crypto.beer.telegram.bot.engine.entity.Session;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.brunocvcunha.instagram4j.requests.payload.InstagramUserSummary;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -46,11 +47,22 @@ public final class ProfileArgGenerator {
         log.info("Call ProfileArgGenerator method getFoundPostArgs");
         return new Object[]{
 
+                session.getInstagramSession().getCurrentPost().getUser().getUsername(),
                 session.getInstagramSession().getCurrentPost().getImage_versions2().getCandidates().get(0).getUrl(),
                 session.getInstagramSession().getCurrentPost().getComment_count(),
-                session.getInstagramSession().getCurrentPost().getCaption().getText(),
-                session.getInstagramSession().getCurrentPost().getUser().getUsername(),
+                session.getInstagramSession().getCurrentPost().getCaption().getText()
+        };
+    }
 
+    public static Object[] getFollowerArgs(Session session) {
+        log.info("Call ProfileArgGenerator method getFoundPostArgs");
+        Integer index = session.getInstagramSession().getCurrentIndexInUserList();
+        InstagramUserSummary user = session.getInstagramSession().getUserList().get(index);
+        return new Object[]{
+
+                user.getUsername(),
+                user.getFull_name(),
+                user.getProfile_pic_url()
         };
     }
 }

@@ -27,7 +27,8 @@ public final class FindPostViewArgGenerator {
         instagram4j = m.getSession().getInstagramSession().getInstagram4j();
 
         InstagramFeedItem post = m.getSession().getInstagramSession().getCurrentPost();
-
-        return String.valueOf(post.getLike_count());
+        log.info("hello");
+        System.out.println("Liked");
+        return String.valueOf("❤️ " + post.getLike_count());
     }
 }

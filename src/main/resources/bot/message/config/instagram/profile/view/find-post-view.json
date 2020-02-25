@@ -24,6 +24,24 @@
 		],
 		[
 			{
+				"id": "INSTAGRAM/PROFILE/FIND-POST-VIEW/COMMENT",
+				"label": {
+					"key":"keyboard.instagram.profile.find-post.comment"
+				},
+				"next": "instagram/profile/view/find-post-view.json",
+				"action": "instagram.profile.FindPostViewActions.likePost"
+			},
+			{
+				"id": "INSTAGRAM/PROFILE/FIND-POST-VIEW/SEE-COMMENTS",
+				"label": {
+					"key":"keyboard.instagram.profile.find-post.see-comments"
+				},
+				"next": "instagram/profile/view/find-post-view.json",
+				"action": "instagram.profile.FindPostViewActions.seeAuthor"
+			}
+		],
+		[
+			{
 				"id": "INSTAGRAM/PROFILE/MAIN",
 				"label": {
 					"key":"keyboard.back"

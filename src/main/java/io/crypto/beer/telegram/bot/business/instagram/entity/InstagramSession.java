@@ -6,6 +6,9 @@ import org.brunocvcunha.instagram4j.Instagram4j;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedItem;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramLoginResult;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramUser;
+import org.brunocvcunha.instagram4j.requests.payload.InstagramUserSummary;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -19,4 +22,6 @@ public class InstagramSession {
     private InstagramUser instagramUser;
     private Boolean currentUserFollowed;
     private InstagramFeedItem currentPost;
+    private List<InstagramUserSummary> userList;
+    private Integer currentIndexInUserList;
 }

@@ -12,14 +12,24 @@
 				},
 				"next": "instagram/profile/view/find-user-view.json",
 				"action": "instagram.profile.FindUserViewActions.followUser"
-			},
+			}
+		],
+		[
 			{
 				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/SEE-FOLLOWERS",
 				"label": {
 					"key":"keyboard.instagram.profile.find-user.see-followers"
 				},
-				"next": "instagram/profile/view/find-user-view.json",
+				"next": "instagram/profile/view/see-followers-view.json",
 				"action": "instagram.profile.FindUserViewActions.seeFollowers"
+			},
+			{
+				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/SEE-FOLLOWINGS",
+				"label": {
+					"key":"keyboard.instagram.profile.find-user.see-followings"
+				},
+				"next": "instagram/profile/view/see-followers-view.json",
+				"action": "instagram.profile.FindUserViewActions.seeFollowings"
 			}
 		],
 		[
