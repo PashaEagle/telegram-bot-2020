@@ -16,15 +16,23 @@ import java.util.List;
 @Builder
 public class InstagramSession {
 
+    //Main class of instagram library
     private Instagram4j instagram4j;
+
+    //Logged account info
     private String accountName;
     private String password;
-
     private InstagramLoginResult instagramLoginResult;
+
+    //Found user info
     private InstagramUser instagramUser;
     private boolean currentUserFollowed;
-    private InstagramFeedItem currentPost;
-    private boolean currentPostLiked;
     private List<InstagramUserSummary> userList;
     private Integer currentIndexInUserList;
+
+    //Found post info
+    private InstagramFeedItem currentPost;
+    private boolean currentPostLiked;
+    private List<InstagramFeedItem> postList;
+    private Integer currentIndexInPostList;
 }

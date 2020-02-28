@@ -1,0 +1,64 @@
+{
+	"text": {
+		"key": "message.instagram.profile.find-user-view.see-posts",
+		"argGenerationMethodPath": "instagram.profile.ProfileArgGenerator.getPostArgs"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/SEE_POSTS/LIKE",
+				"label": {
+					"methodPath":"instagram.profile.FindPostViewArgGenerator.getLikeButtonText"
+				},
+				"next": "instagram/profile/view/find-post-view.json",
+				"action": "instagram.profile.FindPostViewActions.likePost"
+			},
+			{
+				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/SEE_POSTS/COMMENT",
+				"label": {
+					"key":"keyboard.instagram.profile.find-post.comment"
+				},
+				"next": "instagram/profile/view/find-post-view.json",
+				"action": "instagram.profile.FindPostViewActions.likePost"
+			}
+
+		],
+		[
+			{
+				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/SEE_POSTS/SEE-COMMENTS",
+				"label": {
+					"key":"keyboard.instagram.profile.find-post.see-comments"
+				},
+				"next": "instagram/profile/view/find-post-view.json",
+				"action": "instagram.profile.FindPostViewActions.seeAuthor"
+			}
+		],
+		[
+			{
+				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/SEE_POSTS/PREV",
+				"label": {
+					"key":"keyboard.instagram.profile.find-user.see-posts.prev"
+				},
+				"next": "instagram/profile/view/see-posts-view.json",
+				"action": "instagram.profile.FindUserViewActions.seePostPrev"
+			},
+			{
+				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/SEE_POSTS/NEXT",
+				"label": {
+					"key":"keyboard.instagram.profile.find-user.see-posts.next"
+				},
+				"next": "instagram/profile/view/see-posts-view.json",
+				"action": "instagram.profile.FindUserViewActions.seePostNext"
+			}
+		],
+		[
+			{
+				"id": "INSTAGRAM/PROFILE/MAIN",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "instagram/profile/main.json"
+			}
+		]
+	]
+}

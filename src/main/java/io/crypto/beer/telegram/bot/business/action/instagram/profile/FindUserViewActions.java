@@ -9,6 +9,10 @@ import org.brunocvcunha.instagram4j.requests.InstagramFollowRequest;
 import org.brunocvcunha.instagram4j.requests.InstagramGetUserFollowersRequest;
 import org.brunocvcunha.instagram4j.requests.InstagramGetUserFollowingRequest;
 import org.brunocvcunha.instagram4j.requests.InstagramUnfollowRequest;
+import org.brunocvcunha.instagram4j.requests.InstagramUserFeedRequest;
+import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedItem;
+import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedResult;
+import org.brunocvcunha.instagram4j.requests.payload.InstagramGetCurrentUserProfileResult;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramGetUserFollowersResult;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramUser;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramUserSummary;
@@ -107,5 +111,52 @@ public final class FindUserViewActions {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void seePosts(Message m, ApplicationContext ctx) {
+        log.info("Call FindUserViewActions method seePosts");
+        instagram4j = m.getSession().getInstagramSession().getInstagram4j();
+
+        InstagramUser user = m.getSession().getInstagramSession().getInstagramUser();
+
+        try {
+            InstagramFeedResult userPosts = instagram4j.sendRequest(new InstagramUserFeedRequest(user.getPk()));
+            m.getSession().getInstagramSession().setPostList(userPosts.getItems());
+            m.getSession().getInstagramSession().setCurrentIndexInPostList(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void seePostPrev(Message m, ApplicationContext ctx) {
+        log.info("Call FindUserViewActions method seePostPrev");
+        instagram4j = m.getSession().getInstagramSession().getInstagram4j();
+
+        List<InstagramFeedItem> posts = m.getSession().getInstagramSession().getPostList();
+        Integer index = m.getSession().getInstagramSession().getCurrentIndexInPostList();
+
+        if (index == 0) { //if first in list
+            index = posts.size() - 1;
+        } else {
+            index--;
+        }
+
+        m.getSession().getInstagramSession().setCurrentIndexInPostList(index);
+    }
+
+    public static void seePostNext(Message m, ApplicationContext ctx) {
+        log.info("Call FindUserViewActions method seePostNext");
+        instagram4j = m.getSession().getInstagramSession().getInstagram4j();
+
+        List<InstagramFeedItem> posts = m.getSession().getInstagramSession().getPostList();
+        Integer index = m.getSession().getInstagramSession().getCurrentIndexInPostList();
+
+        if (index == posts.size() - 1) { //if last in list
+            index = 0;
+        } else {
+            index++;
+        }
+
+        m.getSession().getInstagramSession().setCurrentIndexInPostList(index);
     }
 }

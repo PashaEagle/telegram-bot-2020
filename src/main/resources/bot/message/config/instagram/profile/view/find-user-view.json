@@ -34,6 +34,16 @@
 		],
 		[
 			{
+				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/SEE-POSTS",
+				"label": {
+					"key":"keyboard.instagram.profile.find-user.see-posts"
+				},
+				"next": "instagram/profile/view/see-posts-view.json",
+				"action": "instagram.profile.FindUserViewActions.seePosts"
+			}
+		],
+		[
+			{
 				"id": "INSTAGRAM/PROFILE/MAIN",
 				"label": {
 					"key":"keyboard.back"

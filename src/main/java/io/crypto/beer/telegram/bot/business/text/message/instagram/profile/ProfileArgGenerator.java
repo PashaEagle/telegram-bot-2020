@@ -4,6 +4,9 @@ import io.crypto.beer.telegram.bot.engine.entity.Session;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.brunocvcunha.instagram4j.requests.payload.ImageMeta;
+import org.brunocvcunha.instagram4j.requests.payload.ImageVersions;
+import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedItem;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramUserSummary;
 
 @Slf4j
@@ -63,6 +66,31 @@ public final class ProfileArgGenerator {
                 user.getUsername(),
                 user.getFull_name(),
                 user.getProfile_pic_url()
+        };
+    }
+
+    public static Object[] getPostArgs(Session session) {
+        log.info("Call ProfileArgGenerator method getPostArgs");
+
+        Integer index = session.getInstagramSession().getCurrentIndexInPostList();
+        InstagramFeedItem post = session.getInstagramSession().getPostList().get(index);
+
+        ImageVersions image = post.getImage_versions2();
+        if (image == null){
+            image = post.getCarousel_media().get(0).getImage_versions2();
+        }
+
+        String text;
+        if (post.getCaption() == null){
+            text = "No text";
+        } else {
+            text = post.getCaption().getText();
+        }
+        return new Object[]{
+
+                post.getUser().getUsername(),
+                text,
+                image.getCandidates().get(0).getUrl()
         };
     }
 }
