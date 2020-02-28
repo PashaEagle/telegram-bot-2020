@@ -21,6 +21,7 @@ import org.brunocvcunha.instagram4j.requests.payload.InstagramSelectVerifyMethod
 import org.springframework.context.ApplicationContext;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.Objects;
 
 @Slf4j
@@ -61,7 +62,10 @@ public final class LoginActions {
 
         if (account != null) {
             m.getSession().getInstagramSession().setAccountName(account.getAccountName());
-            m.getSession().getInstagramSession().setPassword(account.getPassword());
+            String base64Password = account.getPassword();
+            byte[] base64Bytes = Base64.getDecoder().decode(base64Password);
+            String realPassword = new String(base64Bytes);
+            m.getSession().getInstagramSession().setPassword(realPassword);
         } else {
             m.getSession().getInstagramSession().setAccountName("Not set");
             m.getSession().getInstagramSession().setPassword("Not set");
@@ -216,13 +220,15 @@ public final class LoginActions {
 
             AccountRepository accountRepository = ctx.getBean(AccountRepository.class);
 
+            String realPassword = m.getSession().getInstagramSession().getPassword();
+            String base64Password = Base64.getEncoder().encodeToString(realPassword.getBytes());
             AccountModel accountModel =
                     accountRepository.getByChatId(m.getSession().getTelegramProfile().getTelegramId());
             if (accountModel == null) {
                 accountModel = AccountModel.builder()
                         .chatId(m.getSession().getTelegramProfile().getTelegramId())
                         .accountName(m.getSession().getInstagramSession().getAccountName())
-                        .password(m.getSession().getInstagramSession().getPassword())
+                        .password(base64Password)
                         .build();
             }
 

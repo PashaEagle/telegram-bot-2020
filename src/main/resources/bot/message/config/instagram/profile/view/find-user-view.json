@@ -21,7 +21,8 @@
 					"key":"keyboard.instagram.profile.find-user.see-followers"
 				},
 				"next": "instagram/profile/view/see-followers-view.json",
-				"action": "instagram.profile.FindUserViewActions.seeFollowers"
+				"action": "instagram.profile.FindUserViewActions.seeFollowers",
+				"dynamicValidationMethodPath": "instagram.UserProfileButtonsValidation.isAccountPublic"
 			},
 			{
 				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/SEE-FOLLOWINGS",
@@ -29,7 +30,8 @@
 					"key":"keyboard.instagram.profile.find-user.see-followings"
 				},
 				"next": "instagram/profile/view/see-followers-view.json",
-				"action": "instagram.profile.FindUserViewActions.seeFollowings"
+				"action": "instagram.profile.FindUserViewActions.seeFollowings",
+				"dynamicValidationMethodPath": "instagram.UserProfileButtonsValidation.isAccountPublic"
 			}
 		],
 		[
@@ -39,7 +41,8 @@
 					"key":"keyboard.instagram.profile.find-user.see-posts"
 				},
 				"next": "instagram/profile/view/see-posts-view.json",
-				"action": "instagram.profile.FindUserViewActions.seePosts"
+				"action": "instagram.profile.FindUserViewActions.seePosts",
+				"dynamicValidationMethodPath": "instagram.UserProfileButtonsValidation.isAccountPublic"
 			}
 		],
 		[

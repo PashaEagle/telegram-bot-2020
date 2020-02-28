@@ -55,8 +55,6 @@ public final class FindUserViewArgGenerator {
                     result = "✅ Follow";
                     m.getSession().getInstagramSession().setCurrentUserFollowed(false);
                 }
-
-                //Dont show buttons `follows` and `following`
             }
 
         } catch (IOException e) {
