@@ -8,6 +8,7 @@ import org.brunocvcunha.instagram4j.Instagram4j;
 import org.brunocvcunha.instagram4j.requests.InstagramFollowRequest;
 import org.brunocvcunha.instagram4j.requests.InstagramLikeRequest;
 import org.brunocvcunha.instagram4j.requests.InstagramUnfollowRequest;
+import org.brunocvcunha.instagram4j.requests.InstagramUnlikeRequest;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedItem;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramLikeResult;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramUser;
@@ -27,7 +28,18 @@ public final class FindPostViewActions {
 
         InstagramFeedItem post = m.getSession().getInstagramSession().getCurrentPost();
         try {
-            instagram4j.sendRequest(new InstagramLikeRequest(post.getPk()));
+            if (!m.getSession().getInstagramSession().isCurrentPostLiked()){
+                instagram4j.sendRequest(new InstagramLikeRequest(post.getPk()));
+                m.getSession().getInstagramSession().setCurrentPostLiked(true);
+                int likes = m.getSession().getInstagramSession().getCurrentPost().getLike_count();
+                m.getSession().getInstagramSession().getCurrentPost().setLike_count(likes + 1);
+            }
+            else {
+                instagram4j.sendRequest(new InstagramUnlikeRequest(post.getPk()));
+                m.getSession().getInstagramSession().setCurrentPostLiked(false);
+                int likes = m.getSession().getInstagramSession().getCurrentPost().getLike_count();
+                m.getSession().getInstagramSession().getCurrentPost().setLike_count(likes - 1);
+            }
         } catch (IOException e) {
             log.info("Exception while liking post");
             e.printStackTrace();

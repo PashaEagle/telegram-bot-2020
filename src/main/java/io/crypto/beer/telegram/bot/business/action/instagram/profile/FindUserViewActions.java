@@ -27,12 +27,10 @@ public final class FindUserViewActions {
         log.info("Call FindUserViewActions method followUser");
         instagram4j = m.getSession().getInstagramSession().getInstagram4j();
 
-        //Works only for public accounts now
-
         InstagramUser user = m.getSession().getInstagramSession().getInstagramUser();
 
         try {
-            if (m.getSession().getInstagramSession().getCurrentUserFollowed().equals(false)) {
+            if (!m.getSession().getInstagramSession().isCurrentUserFollowed()) {
                 //make follow
                 instagram4j.sendRequest(new InstagramFollowRequest(user.getPk()));
             } else {

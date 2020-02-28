@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.brunocvcunha.instagram4j.Instagram4j;
 import org.brunocvcunha.instagram4j.requests.InstagramGetUserFollowingRequest;
+import org.brunocvcunha.instagram4j.requests.InstagramTagFeedRequest;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedItem;
+import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedResult;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramGetUserFollowersResult;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramUser;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramUserSummary;
@@ -27,8 +29,12 @@ public final class FindPostViewArgGenerator {
         instagram4j = m.getSession().getInstagramSession().getInstagram4j();
 
         InstagramFeedItem post = m.getSession().getInstagramSession().getCurrentPost();
-        log.info("hello");
-        System.out.println("Liked");
-        return String.valueOf("❤️ " + post.getLike_count());
+        boolean liked = m.getSession().getInstagramSession().isCurrentPostLiked();
+
+        if (!liked){
+            return "❤️ " + post.getLike_count();
+        } else {
+            return "\uD83D\uDC94️ " + post.getLike_count();
+        }
     }
 }

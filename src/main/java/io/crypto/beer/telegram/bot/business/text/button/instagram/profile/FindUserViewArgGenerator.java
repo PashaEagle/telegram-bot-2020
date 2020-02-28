@@ -39,13 +39,24 @@ public final class FindUserViewArgGenerator {
                 }
             }
 
-            if (followingHim){
+            if (followingHim) {
                 result = "❌ Unfollow";
                 m.getSession().getInstagramSession().setCurrentUserFollowed(true);
-            }
-            else{
-                result = "✅ Follow";
-                m.getSession().getInstagramSession().setCurrentUserFollowed(false);
+            } else {
+                if (instagramUser.is_private) {
+                    if (!m.getSession().getInstagramSession().isCurrentUserFollowed()) {
+                        result = "❌ Requested";
+                        m.getSession().getInstagramSession().setCurrentUserFollowed(true);
+                    } else {
+                        result = "✅ Follow";
+                        m.getSession().getInstagramSession().setCurrentUserFollowed(false);
+                    }
+                } else {
+                    result = "✅ Follow";
+                    m.getSession().getInstagramSession().setCurrentUserFollowed(false);
+                }
+
+                //Dont show buttons `follows` and `following`
             }
 
         } catch (IOException e) {
