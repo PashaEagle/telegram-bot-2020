@@ -8,17 +8,17 @@
 			{
 				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/SEE_POSTS/LIKE",
 				"label": {
-					"methodPath":"instagram.profile.FindPostViewArgGenerator.getLikeButtonText"
+					"methodPath":"instagram.profile.SeeUserPostsArgGenerator.getLikeButtonText"
 				},
-				"next": "instagram/profile/view/find-post-view.json",
-				"action": "instagram.profile.FindPostViewActions.likePost"
+				"next": "instagram/profile/view/see-posts-view.json",
+				"action": "instagram.profile.SeeUserPostsActions.likePost"
 			},
 			{
 				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/SEE_POSTS/COMMENT",
 				"label": {
 					"key":"keyboard.instagram.profile.find-post.comment"
 				},
-				"next": "instagram/profile/view/find-post-view.json",
+				"next": "instagram/profile/view/see-posts-view.json",
 				"action": "instagram.profile.FindPostViewActions.likePost"
 			}
 
