@@ -1,0 +1,27 @@
+{
+	"text": {
+		"key": "message.instagram.profile.find-user-view.see-posts.see-comments",
+		"argGenerationMethodPath": "instagram.profile.ProfileArgGenerator.getUserPostComments"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/SEE_POSTS/COMMENT",
+				"label": {
+					"key":"keyboard.instagram.profile.find-post.comment"
+				},
+				"next": "instagram/profile/view/see-posts-view.json",
+				"action": "instagram.profile.FindUserViewActions.seePostNext"
+			}
+		],
+		[
+			{
+				"id": "INSTAGRAM/PROFILE/MAIN",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "instagram/profile/view/see-posts-view.json"
+			}
+		]
+	]
+}

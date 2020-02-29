@@ -8,12 +8,14 @@ import org.brunocvcunha.instagram4j.Instagram4j;
 import org.brunocvcunha.instagram4j.requests.InstagramFollowRequest;
 import org.brunocvcunha.instagram4j.requests.InstagramGetUserFollowersRequest;
 import org.brunocvcunha.instagram4j.requests.InstagramGetUserFollowingRequest;
+import org.brunocvcunha.instagram4j.requests.InstagramSearchUsernameRequest;
 import org.brunocvcunha.instagram4j.requests.InstagramUnfollowRequest;
 import org.brunocvcunha.instagram4j.requests.InstagramUserFeedRequest;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedItem;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedResult;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramGetCurrentUserProfileResult;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramGetUserFollowersResult;
+import org.brunocvcunha.instagram4j.requests.payload.InstagramSearchUsernameResult;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramUser;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramUserSummary;
 import org.springframework.context.ApplicationContext;
@@ -43,6 +45,29 @@ public final class FindUserViewActions {
             }
         } catch (IOException e) {
             log.info("Error occurred when trying to follow/unfollow {}", user.getUsername());
+            e.printStackTrace();
+        }
+    }
+
+    public static void seeProfile(Message m, ApplicationContext ctx) {
+        log.info("Call FindUserViewActions method seeProfile");
+        instagram4j = m.getSession().getInstagramSession().getInstagram4j();
+
+        Integer index = m.getSession().getInstagramSession().getCurrentIndexInUserList();
+        String username = m.getSession().getInstagramSession().getUserList().get(index).getUsername();
+        InstagramSearchUsernameResult userResult = null;
+        try {
+            userResult = instagram4j.sendRequest(new InstagramSearchUsernameRequest(username));
+            if (userResult.getUser() == null) {
+                System.out.println("User not found");
+                m.getSession().getMessageConfig().getText().setKey("message.instagram.profile.find-user-not-found");
+                m.getSession().getMessageConfig().getText().setArgGenerationMethodPath("instagram.profile" +
+                        ".ProfileArgGenerator.getLastEnteredInput");
+            } else {
+                m.getSession().getInstagramSession().setInstagramUser(userResult.getUser());
+            }
+        } catch (Exception e) {
+            System.out.println("Some exception when searching user.");
             e.printStackTrace();
         }
     }
@@ -123,6 +148,7 @@ public final class FindUserViewActions {
             InstagramFeedResult userPosts = instagram4j.sendRequest(new InstagramUserFeedRequest(user.getPk()));
             m.getSession().getInstagramSession().setPostList(userPosts.getItems());
             m.getSession().getInstagramSession().setCurrentIndexInPostList(0);
+            m.getSession().getInstagramSession().setCurrentPost(userPosts.getItems().get(0));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -142,6 +168,7 @@ public final class FindUserViewActions {
         }
 
         m.getSession().getInstagramSession().setCurrentIndexInPostList(index);
+        m.getSession().getInstagramSession().setCurrentPost(posts.get(index));
     }
 
     public static void seePostNext(Message m, ApplicationContext ctx) {
@@ -158,5 +185,6 @@ public final class FindUserViewActions {
         }
 
         m.getSession().getInstagramSession().setCurrentIndexInPostList(index);
+        m.getSession().getInstagramSession().setCurrentPost(posts.get(index));
     }
 }

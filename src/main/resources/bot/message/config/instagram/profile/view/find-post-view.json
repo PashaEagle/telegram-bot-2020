@@ -18,7 +18,7 @@
 				"label": {
 					"key":"keyboard.instagram.profile.find-post.see-author"
 				},
-				"next": "instagram/profile/view/find-post-view.json",
+				"next": "instagram/profile/view/find-user-view.json",
 				"action": "instagram.profile.FindPostViewActions.seeAuthor"
 			}
 		],
@@ -36,8 +36,7 @@
 				"label": {
 					"key":"keyboard.instagram.profile.find-post.see-comments"
 				},
-				"next": "instagram/profile/view/find-post-view.json",
-				"action": "instagram.profile.FindPostViewActions.seeAuthor"
+				"next": "instagram/profile/view/see-post-by-hashtag-comments-view.json"
 			}
 		],
 		[
