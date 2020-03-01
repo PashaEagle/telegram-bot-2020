@@ -48,6 +48,17 @@
 		],
 		[
 			{
+				"id": "INSTAGRAM/PROFILE/FIND-USER-VIEW/LIKE-ALL-POSTS",
+				"label": {
+					"methodPath":"instagram.profile.HiddenFeaturesArgGenerator.getLikeAllButtonText"
+				},
+				"next": "instagram/profile/view/find-user-view.json",
+				"action": "instagram.profile.FindUserViewActions.likeAllPosts",
+				"dynamicValidationMethodPath": "instagram.UserProfileButtonsValidation.isLikeAllFeatureActive"
+			}
+		],
+		[
+			{
 				"id": "INSTAGRAM/PROFILE/MAIN",
 				"label": {
 					"key":"keyboard.back"

@@ -16,11 +16,11 @@ public final class LoginArgGenerator {
 
         String accountName = session.getInstagramSession().getAccountName();
         String password = session.getInstagramSession().getPassword();
-        String hidenPassword = hidePassword(password);
+        String hiddenPassword = hidePassword(password);
         return new Object[]{
 
                 accountName,
-                hidenPassword
+                hiddenPassword
         };
     }
 
@@ -28,12 +28,12 @@ public final class LoginArgGenerator {
 
         if (password.equals("Not set")) return password;
 
-        StringBuilder hidenPassword = new StringBuilder(password);
+        StringBuilder hiddenPassword = new StringBuilder(password);
         for (int i = 1; i < password.length()-1; ++i){
-            hidenPassword.setCharAt(i, '*');
+            hiddenPassword.setCharAt(i, '*');
         }
 
-        return hidenPassword.toString();
+        return hiddenPassword.toString();
     }
 
     public static Object[] getErrorMessage(Session session) {

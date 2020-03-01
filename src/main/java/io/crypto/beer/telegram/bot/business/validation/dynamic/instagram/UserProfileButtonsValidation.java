@@ -5,7 +5,6 @@ import org.brunocvcunha.instagram4j.Instagram4j;
 import org.brunocvcunha.instagram4j.requests.InstagramGetUserFollowingRequest;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramGetUserFollowersResult;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramLoggedUser;
-import org.brunocvcunha.instagram4j.requests.payload.InstagramLoginResult;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramUser;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramUserSummary;
 import org.springframework.context.ApplicationContext;
@@ -51,8 +50,14 @@ public class UserProfileButtonsValidation {
 
         instagram4j = m.getSession().getInstagramSession().getInstagram4j();
         InstagramUser instagramUser = m.getSession().getInstagramSession().getInstagramUser();
-        InstagramLoggedUser loggedUser = m.getSession().getInstagramSession().getInstagramLoginResult().getLogged_in_user();
+        InstagramLoggedUser loggedUser =
+                m.getSession().getInstagramSession().getInstagramLoginResult().getLogged_in_user();
 
         return !instagramUser.getUsername().equals(loggedUser.getUsername());
+    }
+
+    public static boolean isLikeAllFeatureActive(Message m, ApplicationContext ctx) {
+
+        return m.getSession().getInstagramSession().isLikeAllActive();
     }
 }

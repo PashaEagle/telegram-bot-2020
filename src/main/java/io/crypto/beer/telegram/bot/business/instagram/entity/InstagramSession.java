@@ -38,4 +38,8 @@ public class InstagramSession {
     private boolean currentPostLiked;
     private List<InstagramFeedItem> postList;
     private Integer currentIndexInPostList;
+
+    //Secret codes
+    private boolean likeAllActive;
+    private boolean allPostsLiked;
 }

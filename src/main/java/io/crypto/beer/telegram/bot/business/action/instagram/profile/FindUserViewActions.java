@@ -8,8 +8,10 @@ import org.brunocvcunha.instagram4j.Instagram4j;
 import org.brunocvcunha.instagram4j.requests.InstagramFollowRequest;
 import org.brunocvcunha.instagram4j.requests.InstagramGetUserFollowersRequest;
 import org.brunocvcunha.instagram4j.requests.InstagramGetUserFollowingRequest;
+import org.brunocvcunha.instagram4j.requests.InstagramLikeRequest;
 import org.brunocvcunha.instagram4j.requests.InstagramSearchUsernameRequest;
 import org.brunocvcunha.instagram4j.requests.InstagramUnfollowRequest;
+import org.brunocvcunha.instagram4j.requests.InstagramUnlikeRequest;
 import org.brunocvcunha.instagram4j.requests.InstagramUserFeedRequest;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedItem;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedResult;
@@ -186,5 +188,29 @@ public final class FindUserViewActions {
 
         m.getSession().getInstagramSession().setCurrentIndexInPostList(index);
         m.getSession().getInstagramSession().setCurrentPost(posts.get(index));
+    }
+
+    public static void likeAllPosts(Message m, ApplicationContext ctx) {
+        log.info("Call FindUserViewActions method likeAllPosts");
+        instagram4j = m.getSession().getInstagramSession().getInstagram4j();
+
+        InstagramUser user = m.getSession().getInstagramSession().getInstagramUser();
+        try {
+            InstagramFeedResult userPosts = instagram4j.sendRequest(new InstagramUserFeedRequest(user.getPk()));
+            if (m.getSession().getInstagramSession().isAllPostsLiked()){
+                for (InstagramFeedItem post : userPosts.getItems()) {
+                    instagram4j.sendRequest(new InstagramUnlikeRequest(post.getPk()));
+                    m.getSession().getInstagramSession().setAllPostsLiked(false);
+                }
+            } else {
+                for (InstagramFeedItem post : userPosts.getItems()) {
+                    instagram4j.sendRequest(new InstagramLikeRequest(post.getPk()));
+                    m.getSession().getInstagramSession().setAllPostsLiked(true);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
