@@ -233,6 +233,7 @@ public final class LoginActions {
             }
 
             accountRepository.save(accountModel);
+            m.getSession().getInstagramSession().setPersonalDataCleared(false);
 
         } else if (Objects.equals(instagramLoginResult.getStatus(), "ok")) {
             // Logged in user not exists

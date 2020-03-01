@@ -10,7 +10,8 @@
 				"label": {
 					"key": "keyboard.instagram.start"
 				},
-				"next": "instagram/start.json"
+				"next": "instagram/start.json",
+				"action": "StartActions.startAction"
 			}
 		],
 		[
@@ -19,7 +20,8 @@
 				"label": {
 					"key": "keyboard.settings"
 				},
-				"next": "setting/settings.json"
+				"next": "setting/settings.json",
+				"action": "StartActions.startAction"
 			},
 			{
 				"id": "ABOUT",

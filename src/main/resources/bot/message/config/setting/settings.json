@@ -10,13 +10,28 @@
 					"key":"keyboard.language"
 				},
 				"next": "setting/language/language.json"
-			},
+			}
+		],
+		[
 			{
-				"id": "PROFILE",
+				"id": "CLEAR-PERSONAL-DATA",
 				"label":{
-					"key":"keyboard.profile"	
+					"key":"keyboard.clear-personal-data"
 				},
-				"next": "setting/profile/profile.json"
+				"next": "setting/settings.json",
+				"action": "setting.ClearPersonalDataActions.clear",
+				"dynamicValidationMethodPath": "setting.ClearPersonalDataButtonValidation.validate"
+			}
+		],
+		[
+			{
+				"id": "SECRET-CODE",
+				"label":{
+					"key":"keyboard.secret-code"
+				},
+				"next": "setting/code/secret-code-input.json",
+				"action": "setting.code.CodeActions.activateHiddenFeature",
+				"inputDataValidationMethodPath": "instagram.profile.ProfileValidations.validateSecretCode"
 			}
 		],
 		[

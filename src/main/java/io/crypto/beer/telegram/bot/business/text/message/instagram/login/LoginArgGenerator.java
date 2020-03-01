@@ -26,6 +26,8 @@ public final class LoginArgGenerator {
 
     public static String hidePassword(String password){
 
+        if (password.equals("Not set")) return password;
+
         StringBuilder hidenPassword = new StringBuilder(password);
         for (int i = 1; i < password.length()-1; ++i){
             hidenPassword.setCharAt(i, '*');

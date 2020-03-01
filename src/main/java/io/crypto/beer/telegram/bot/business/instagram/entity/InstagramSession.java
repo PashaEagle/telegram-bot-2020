@@ -19,6 +19,9 @@ public class InstagramSession {
     //Main class of instagram library
     private Instagram4j instagram4j;
 
+    //Personal data
+    private boolean personalDataCleared;
+
     //Logged account info
     private String accountName;
     private String password;
