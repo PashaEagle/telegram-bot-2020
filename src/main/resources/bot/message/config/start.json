@@ -6,18 +6,18 @@
 	"callbacks": [
 		[
 			{
-				"id": "SETTINGS",
-				"label": {
-					"key": "keyboard.settings"
-				},
-				"next": "setting/settings.json"
-			},
-			{
 				"id": "INSTAGRAM/START",
 				"label": {
 					"key": "keyboard.instagram.start"
 				},
 				"next": "instagram/start.json"
+			},
+			{
+				"id": "SETTINGS",
+				"label": {
+					"key": "keyboard.settings"
+				},
+				"next": "setting/settings.json"
 			}
 		]
 	]

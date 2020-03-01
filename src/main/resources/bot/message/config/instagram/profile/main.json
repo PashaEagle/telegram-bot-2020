@@ -6,6 +6,24 @@
 	"callbacks": [
 		[
 			{
+				"id": "INSTAGRAM/PROFILE/MY-PROFILE",
+				"label": {
+					"key":"keyboard.instagram.profile.my-profile"
+				},
+				"next": "instagram/profile/make-post.json",
+				"action": "instagram.profile.ProfileActions.makePost"
+			},
+			{
+				"id": "INSTAGRAM/PROFILE/NEW-POST",
+				"label": {
+					"key":"keyboard.instagram.profile.make-post"
+				},
+				"next": "instagram/profile/make-post.json",
+				"action": "instagram.profile.ProfileActions.makePost"
+			}
+		],
+		[
+			{
 				"id": "INSTAGRAM/PROFILE/FIND-USER-INPUT",
 				"label": {
 					"key":"keyboard.instagram.profile.find-user"
@@ -24,16 +42,6 @@
 				"next": "instagram/profile/input/find-post-input.json",
 				"action": "instagram.profile.ProfileActions.findPost",
 				"inputDataValidationMethodPath": "instagram.profile.ProfileValidations.validatePostHashTag"
-			}
-		],
-		[
-			{
-				"id": "INSTAGRAM/PROFILE/MAKE-POST",
-				"label": {
-					"key":"keyboard.instagram.profile.make-post"
-				},
-				"next": "instagram/profile/make-post.json",
-				"action": "instagram.profile.ProfileActions.makePost"
 			}
 		],
 		[

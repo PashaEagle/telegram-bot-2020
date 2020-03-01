@@ -28,8 +28,9 @@
 				"label": {
 					"key":"keyboard.instagram.profile.find-post.comment"
 				},
-				"next": "instagram/profile/view/find-post-view.json",
-				"action": "instagram.profile.FindPostViewActions.likePost"
+				"next": "instagram/profile/input/comment-post-by-hashtag-input.json",
+				"action": "instagram.profile.SeePostCommentsActions.commentPostByHashtag",
+				"inputDataValidationMethodPath": "instagram.profile.ProfileValidations.validateComment"
 			},
 			{
 				"id": "INSTAGRAM/PROFILE/FIND-POST-VIEW/SEE-COMMENTS",

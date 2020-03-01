@@ -18,4 +18,9 @@ public final class ProfileValidations {
 
         System.out.println("Some empty validation for hashtag..");
     }
+
+    public static void validateComment(Message m, ApplicationContext ctx) {
+
+        System.out.println("Some empty validation for comment..");
+    }
 }

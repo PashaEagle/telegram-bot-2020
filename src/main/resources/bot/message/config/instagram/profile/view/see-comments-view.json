@@ -10,8 +10,9 @@
 				"label": {
 					"key":"keyboard.instagram.profile.find-post.comment"
 				},
-				"next": "instagram/profile/view/see-posts-view.json",
-				"action": "instagram.profile.FindUserViewActions.seePostNext"
+				"next": "instagram/profile/input/comment-input.json",
+				"action": "instagram.profile.SeePostCommentsActions.comment",
+				"inputDataValidationMethodPath": "instagram.profile.ProfileValidations.validateComment"
 			}
 		],
 		[
