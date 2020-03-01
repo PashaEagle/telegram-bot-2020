@@ -11,13 +11,22 @@
 					"key": "keyboard.instagram.start"
 				},
 				"next": "instagram/start.json"
-			},
+			}
+		],
+		[
 			{
 				"id": "SETTINGS",
 				"label": {
 					"key": "keyboard.settings"
 				},
 				"next": "setting/settings.json"
+			},
+			{
+				"id": "ABOUT",
+				"label": {
+					"key": "keyboard.about"
+				},
+				"next": "about/about.json"
 			}
 		]
 	]

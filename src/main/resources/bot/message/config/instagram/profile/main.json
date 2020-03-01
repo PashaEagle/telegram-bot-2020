@@ -10,8 +10,8 @@
 				"label": {
 					"key":"keyboard.instagram.profile.my-profile"
 				},
-				"next": "instagram/profile/make-post.json",
-				"action": "instagram.profile.ProfileActions.makePost"
+				"next": "instagram/profile/view/find-user-view.json",
+				"action": "instagram.profile.ProfileActions.myProfile"
 			},
 			{
 				"id": "INSTAGRAM/PROFILE/NEW-POST",

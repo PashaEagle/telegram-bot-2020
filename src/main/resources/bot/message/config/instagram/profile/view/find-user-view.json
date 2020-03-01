@@ -11,7 +11,8 @@
 					"methodPath":"instagram.profile.FindUserViewArgGenerator.getFollowButtonText"
 				},
 				"next": "instagram/profile/view/find-user-view.json",
-				"action": "instagram.profile.FindUserViewActions.followUser"
+				"action": "instagram.profile.FindUserViewActions.followUser",
+				"dynamicValidationMethodPath": "instagram.UserProfileButtonsValidation.isAccountNotMine"
 			}
 		],
 		[

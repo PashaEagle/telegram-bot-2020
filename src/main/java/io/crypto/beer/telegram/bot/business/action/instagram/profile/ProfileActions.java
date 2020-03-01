@@ -24,10 +24,9 @@ public final class ProfileActions {
 
     public static void findUser(Message m, ApplicationContext ctx) {
         log.info("Call ProfileActions method findUser");
-
-        String username = m.getSession().getInputData();
         instagram4j = m.getSession().getInstagramSession().getInstagram4j();
 
+        String username = m.getSession().getInputData();
         InstagramSearchUsernameResult userResult = null;
         try {
             userResult = instagram4j.sendRequest(new InstagramSearchUsernameRequest(username));
@@ -50,10 +49,9 @@ public final class ProfileActions {
 
     public static void findPost(Message m, ApplicationContext ctx) throws IOException {
         log.info("Call ProfileActions method findPost");
-
-        String hashtag = m.getSession().getInputData();
         instagram4j = m.getSession().getInstagramSession().getInstagram4j();
 
+        String hashtag = m.getSession().getInputData();
         InstagramFeedResult tagFeed = instagram4j.sendRequest(new InstagramTagFeedRequest(hashtag));
         for (InstagramFeedItem feedResult : tagFeed.getItems()) {
             System.out.println("Post ID: " + feedResult.getPk());
@@ -69,5 +67,30 @@ public final class ProfileActions {
         log.info("Call ProfileActions method makePost");
 
 
+    }
+
+    public static void myProfile(Message m, ApplicationContext ctx) {
+        log.info("Call ProfileActions method myProfile");
+        instagram4j = m.getSession().getInstagramSession().getInstagram4j();
+
+        String username = m.getSession().getInstagramSession().getAccountName();
+        InstagramSearchUsernameResult userResult = null;
+        try {
+            userResult = instagram4j.sendRequest(new InstagramSearchUsernameRequest(username));
+            if (userResult.getUser() == null) {
+                System.out.println("User not found");
+                m.getSession().getMessageConfig().getText().setKey("message.instagram.profile.find-user-not-found");
+                m.getSession().getMessageConfig().getText().setArgGenerationMethodPath("instagram.profile" +
+                        ".ProfileArgGenerator.getLastEnteredInput");
+            } else {
+                m.getSession().getInstagramSession().setInstagramUser(userResult.getUser());
+                ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s",
+                        KeyboardPath.BASE_PATH.getPath(),
+                        KeyboardPath.FIND_USER_VIEW.getPath()));
+            }
+        } catch (Exception e) {
+            System.out.println("Some exception when searching user.");
+            e.printStackTrace();
+        }
     }
 }
