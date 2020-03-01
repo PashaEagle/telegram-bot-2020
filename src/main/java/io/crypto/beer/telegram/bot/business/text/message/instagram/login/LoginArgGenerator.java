@@ -13,11 +13,29 @@ public final class LoginArgGenerator {
 
     public static Object[] getArgs(Session session) {
         log.info("Call LoginArgGenerator method getArgs");
-        return new Object[] { session.getInstagramSession().getAccountName(), session.getInstagramSession().getPassword()};
+
+        String accountName = session.getInstagramSession().getAccountName();
+        String password = session.getInstagramSession().getPassword();
+        String hidenPassword = hidePassword(password);
+        return new Object[]{
+
+                accountName,
+                hidenPassword
+        };
+    }
+
+    public static String hidePassword(String password){
+
+        StringBuilder hidenPassword = new StringBuilder(password);
+        for (int i = 1; i < password.length()-1; ++i){
+            hidenPassword.setCharAt(i, '*');
+        }
+
+        return hidenPassword.toString();
     }
 
     public static Object[] getErrorMessage(Session session) {
         log.info("Call LoginArgGenerator method getErrorMessage");
-        return new Object[] { ERROR_MESSAGE };
+        return new Object[]{ERROR_MESSAGE};
     }
 }
