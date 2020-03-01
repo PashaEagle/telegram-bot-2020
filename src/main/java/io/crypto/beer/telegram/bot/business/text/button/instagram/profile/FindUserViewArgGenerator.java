@@ -1,6 +1,7 @@
 package io.crypto.beer.telegram.bot.business.text.button.instagram.profile;
 
 import io.crypto.beer.telegram.bot.engine.entity.Message;
+import io.crypto.beer.telegram.bot.engine.utils.LocalizationService;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +19,16 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class FindUserViewArgGenerator {
 
+
     public static String getFollowButtonText(Message m, ApplicationContext ctx) {
         log.info("Call FindUserViewArgGenerator method getFollowButtonText");
+
+        String follow = LocalizationService.getMessage("keyboard.instagram.profile.find-user.follow",
+                m.getSession().getLocale());
+        String unfollow = LocalizationService.getMessage("keyboard.instagram.profile.find-user.unfollow",
+                m.getSession().getLocale());
+        String requested = LocalizationService.getMessage("keyboard.instagram.profile.find-user.requested",
+                m.getSession().getLocale());
 
         Instagram4j instagram4j = m.getSession().getInstagramSession().getInstagram4j();
 
@@ -40,19 +49,19 @@ public final class FindUserViewArgGenerator {
             }
 
             if (followingHim) {
-                result = "❌ Unfollow";
+                result = unfollow;
                 m.getSession().getInstagramSession().setCurrentUserFollowed(true);
             } else {
                 if (instagramUser.is_private) {
                     if (!m.getSession().getInstagramSession().isCurrentUserFollowed()) {
-                        result = "❌ Requested";
+                        result = requested;
                         m.getSession().getInstagramSession().setCurrentUserFollowed(true);
                     } else {
-                        result = "✅ Follow";
+                        result = follow;
                         m.getSession().getInstagramSession().setCurrentUserFollowed(false);
                     }
                 } else {
-                    result = "✅ Follow";
+                    result = follow;
                     m.getSession().getInstagramSession().setCurrentUserFollowed(false);
                 }
             }

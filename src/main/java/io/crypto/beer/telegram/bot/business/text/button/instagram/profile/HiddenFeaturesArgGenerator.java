@@ -1,6 +1,7 @@
 package io.crypto.beer.telegram.bot.business.text.button.instagram.profile;
 
 import io.crypto.beer.telegram.bot.engine.entity.Message;
+import io.crypto.beer.telegram.bot.engine.utils.LocalizationService;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,12 +17,16 @@ public final class HiddenFeaturesArgGenerator {
     public static String getLikeAllButtonText(Message m, ApplicationContext ctx) {
         log.info("Call SeeUserPostsArgGenerator method getLikeButtonText");
 
+        String likeAllMessage = LocalizationService.getMessage("keyboard.instagram.profile.find-user.like-all-posts",
+                m.getSession().getLocale());
+        String unlikeAllMessage = LocalizationService.getMessage("keyboard.instagram.profile.find-user" +
+                ".unlike-all-posts", m.getSession().getLocale());
+
         instagram4j = m.getSession().getInstagramSession().getInstagram4j();
 
         if (m.getSession().getInstagramSession().isAllPostsLiked())
-            return "\uD83D\uDC94 Unlike all posts";
+            return unlikeAllMessage;
         else
-            return "\uD83D\uDC93 Like all posts";
-
+            return likeAllMessage;
     }
 }
