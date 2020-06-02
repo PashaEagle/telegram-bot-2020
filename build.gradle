@@ -27,8 +27,11 @@ dependencies {
 	implementation "org.telegram:telegrambots-abilities:4.4.0.2"
 	implementation "org.telegram:telegrambots-spring-boot-starter:4.4.0.2"
 	implementation "org.glassfish.jersey.bundles.repackaged:jersey-guava:2.6"
-	
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+	compile 'org.facebook4j:facebook4j-core:[2.4,)'
+	// https://mvnrepository.com/artifact/com.restfb/restfb
+	compile group: 'com.restfb', name: 'restfb', version: '3.6.1'
 
 	compile 'org.brunocvcunha.instagram4j:instagram4j:1.13'
 

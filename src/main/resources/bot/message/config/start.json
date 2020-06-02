@@ -16,6 +16,16 @@
 		],
 		[
 			{
+				"id": "FACEBOOK/START",
+				"label": {
+					"key": "keyboard.facebook.start"
+				},
+				"next": "facebook/start.json",
+				"action": "StartActions.startAction"
+			}
+		],
+		[
+			{
 				"id": "SETTINGS",
 				"label": {
 					"key": "keyboard.settings"
