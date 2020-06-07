@@ -1,0 +1,35 @@
+{
+	"text": {
+		"key": "message.facebook.profile.groups",
+		"argGenerationMethodPath": "facebook.profile.ProfileArgGenerator.getGroups"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "FACEBOOK/PROFILE/GROUPS/PREV",
+				"label": {
+					"key":"keyboard.facebook.profile.prev"
+				},
+				"next": "facebook/profile/groups.json",
+				"action": "facebook.profile.ProfileActions.seePrevGroup"
+			},
+			{
+				"id": "FACEBOOK/PROFILE/GROUPS/NEXT",
+				"label": {
+					"key":"keyboard.facebook.profile.next"
+				},
+				"next": "facebook/profile/groups.json",
+				"action": "facebook.profile.ProfileActions.seeNextGroup"
+			}
+		],
+		[
+			{
+				"id": "BACK",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "facebook/profile/main.json"
+			}
+		]
+	]
+}

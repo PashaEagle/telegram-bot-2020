@@ -8,7 +8,7 @@
 			{
 				"id": "FACEBOOK/PROFILE/FEED/PREV",
 				"label": {
-					"key":"keyboard.facebook.profile.feed.prev"
+					"key":"keyboard.facebook.profile.prev"
 				},
 				"next": "facebook/profile/feed1.json",
 				"action": "facebook.profile.ProfileActions.seePrevFeed"
@@ -16,7 +16,7 @@
 			{
 				"id": "FACEBOOK/PROFILE/FEED/NEXT",
 				"label": {
-					"key":"keyboard.facebook.profile.feed.next"
+					"key":"keyboard.facebook.profile.next"
 				},
 				"next": "facebook/profile/feed1.json",
 				"action": "facebook.profile.ProfileActions.seeNextFeed"

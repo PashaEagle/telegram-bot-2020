@@ -38,9 +38,9 @@
 			{
 				"id": "FACEBOOK/PROFILE/LIKES",
 				"label": {
-					"key":"keyboard.facebook.profile.likes"
+					"key":"keyboard.facebook.profile.groups"
 				},
-				"next": "facebook/profile/likes.json",
+				"next": "facebook/profile/groups.json",
 				"action": "facebook.profile.ProfileActions.getGroups"
 			}
 		],

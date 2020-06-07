@@ -1,6 +1,7 @@
 package io.crypto.beer.telegram.bot.business.text.message.facebook.profile;
 
 import com.google.inject.internal.cglib.core.internal.$CustomizerRegistry;
+import com.restfb.types.Page;
 import com.restfb.types.Photo;
 import com.restfb.types.Post;
 import io.crypto.beer.telegram.bot.engine.entity.Session;
@@ -63,6 +64,31 @@ public final class ProfileArgGenerator {
                 currentPost.getAttachments().getData().get(0).getTitle(),
                 currentPost.getAttachments().getData().get(0).getDescription(),
                 currentPost.getAttachments().getData().get(0).getUrl()
+        };
+    }
+
+    public static Object[] getGroups(Session session) {
+        log.info("Call ProfileArgGenerator method getGroups");
+        Integer index = session.getFacebookSession().getCurrentUserGroupIndex();
+        if (index == null) System.out.println("CURRENT USER DONT HAVE GROUPS");
+        Page page = session.getFacebookSession().getCurrentUserGroups().getData().get(index);
+        return new Object[]{
+                page.getName(),
+                page.getCover() != null ? page.getCover().getSource() : null,
+                page.getFanCount(),
+                page.getLocation() != null ? page.getLocation().getName() : null,
+                page.getCategory(),
+                page.getCheckins(),
+                page.getGenre(),
+                page.getWebsite(),
+                page.getEmails().isEmpty() ? null : page.getEmails().get(0),
+                page.getAbout(),
+                page.getDescription(),
+                page.getFounded(),
+                page.getGeneralInfo(),
+                page.getCompanyOverview(),
+                page.getBio(),
+                page.getLink()
         };
     }
 }

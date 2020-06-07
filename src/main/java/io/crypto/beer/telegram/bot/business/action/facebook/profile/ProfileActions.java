@@ -2,20 +2,16 @@ package io.crypto.beer.telegram.bot.business.action.facebook.profile;
 
 import com.restfb.Connection;
 import com.restfb.Parameter;
+import com.restfb.types.Page;
 import com.restfb.types.Photo;
 import com.restfb.types.Post;
-import com.restfb.types.User;
 import io.crypto.beer.telegram.bot.business.action.facebook.configuration.FacebookConfig;
 import io.crypto.beer.telegram.bot.business.instagram.entity.FacebookSession;
 import io.crypto.beer.telegram.bot.engine.entity.Message;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.brunocvcunha.instagram4j.Instagram4j;
-import org.brunocvcunha.instagram4j.requests.payload.InstagramUserSummary;
 import org.springframework.context.ApplicationContext;
-
-import java.util.List;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -47,9 +43,12 @@ public final class ProfileActions {
             System.out.println("FATAL ERROR FATAL ERROR CURRENT USER CANNOT BE NULL!");
             throw new RuntimeException("FATAL ERROR FATAL ERROR CURRENT USER CANNOT BE NULL!");
         }
-        Connection<Photo> photos = FacebookConfig.userFacebookClient.fetchConnection(m.getSession().getFacebookSession().getCurrentUserId() + "/photos/uploaded", Photo.class,
-                Parameter.with("fields", "id,created_time,from,link,images,icon,album,place,comments{message,from,created_time}"));
+        Connection<Photo> photos =
+                FacebookConfig.userFacebookClient.fetchConnection(m.getSession().getFacebookSession().getCurrentUserId() + "/photos/uploaded", Photo.class,
+                Parameter.with("fields", "id,created_time,from,link,images,icon,album,place,comments{message,from," +
+                        "created_time}"));
         System.out.println("Received response on get user photos");
+        System.out.println("Amount of photos = " + photos.getData().size());
         m.getSession().getFacebookSession().setCurrentUserPhotos(photos);
         if (photos.getData().isEmpty()) m.getSession().getFacebookSession().setCurrentUserPhotoIndex(null);
         else m.getSession().getFacebookSession().setCurrentUserPhotoIndex(0);
@@ -91,10 +90,12 @@ public final class ProfileActions {
             System.out.println("FATAL ERROR FATAL ERROR CURRENT USER CANNOT BE NULL!");
             throw new RuntimeException("FATAL ERROR FATAL ERROR CURRENT USER CANNOT BE NULL!");
         }
-        Connection<Post> feed = FacebookConfig.userFacebookClient.fetchConnection(m.getSession().getFacebookSession().getCurrentUserId() + "/feed", Post.class,
-                Parameter.with("fields", "description,created_time,from,full_picture,link,message,name,place,type,caption,attachments{description,title,url}"));
+        Connection<Post> feed =
+                FacebookConfig.userFacebookClient.fetchConnection(m.getSession().getFacebookSession().getCurrentUserId() + "/feed", Post.class,
+                Parameter.with("fields", "description,created_time,from,full_picture,link,message,name,place,type," +
+                        "caption,attachments{description,title,url}"));
         System.out.println("Received response on get user feed");
-        System.out.println(feed.getData().size());
+        System.out.println("Posts in feed = " + feed.getData().size());
         m.getSession().getFacebookSession().setCurrentUserFeed(feed);
         if (feed.getData().isEmpty()) m.getSession().getFacebookSession().setCurrentUserFeedIndex(null);
         else m.getSession().getFacebookSession().setCurrentUserFeedIndex(0);
@@ -128,6 +129,53 @@ public final class ProfileActions {
         }
 
         m.getSession().getFacebookSession().setCurrentUserFeedIndex(index);
+    }
+
+    public static void getGroups(Message m, ApplicationContext ctx) {
+        log.info("Call ProfileActions method getGroups");
+        if (m.getSession().getFacebookSession().getCurrentUser() == null) {
+            System.out.println("FATAL ERROR FATAL ERROR CURRENT USER CANNOT BE NULL!");
+            throw new RuntimeException("FATAL ERROR FATAL ERROR CURRENT USER CANNOT BE NULL!");
+        }
+        Connection<Page> groups =
+                FacebookConfig.userFacebookClient.fetchConnection(m.getSession().getFacebookSession().getCurrentUserId() + "/likes", Page.class,
+                Parameter.with("fields", "about,category,checkins,company_overview,cover,description," +
+                        "emails,fan_count,founded,general_info,genre,hometown,link,name,username,website,bio"));
+        System.out.println("Received response on get user groups");
+        System.out.println("Groups amount = " + groups.getData().size());
+        m.getSession().getFacebookSession().setCurrentUserGroups(groups);
+        if (groups.getData().isEmpty()) m.getSession().getFacebookSession().setCurrentUserGroupIndex(null);
+        else m.getSession().getFacebookSession().setCurrentUserGroupIndex(0);
+    }
+
+    public static void seePrevGroup(Message m, ApplicationContext ctx) {
+        log.info("Call ProfileActions method seePrevGroup");
+
+        Connection<Page> groups = m.getSession().getFacebookSession().getCurrentUserGroups();
+        Integer index = m.getSession().getFacebookSession().getCurrentUserGroupIndex();
+
+        if (index == 0) { //if first in list
+            index = groups.getData().size() - 1;
+        } else {
+            index--;
+        }
+
+        m.getSession().getFacebookSession().setCurrentUserGroupIndex(index);
+    }
+
+    public static void seeNextGroup(Message m, ApplicationContext ctx) {
+        log.info("Call ProfileActions method seeNextGroup");
+
+        Connection<Page> groups = m.getSession().getFacebookSession().getCurrentUserGroups();
+        Integer index = m.getSession().getFacebookSession().getCurrentUserGroupIndex();
+
+        if (index == groups.getData().size() - 1) { //if last in list
+            index = 0;
+        } else {
+            index++;
+        }
+
+        m.getSession().getFacebookSession().setCurrentUserGroupIndex(index);
     }
 
 }

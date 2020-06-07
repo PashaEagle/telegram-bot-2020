@@ -8,7 +8,7 @@
 			{
 				"id": "FACEBOOK/PROFILE/PHOTOS/PREV",
 				"label": {
-					"key":"keyboard.facebook.profile.photos.prev"
+					"key":"keyboard.facebook.profile.prev"
 				},
 				"next": "facebook/profile/photos.json",
 				"action": "facebook.profile.ProfileActions.seePrevPhoto"
@@ -16,7 +16,7 @@
 			{
 				"id": "FACEBOOK/PROFILE/PHOTOS/NEXT",
 				"label": {
-					"key":"keyboard.facebook.profile.photos.next"
+					"key":"keyboard.facebook.profile.next"
 				},
 				"next": "facebook/profile/photos.json",
 				"action": "facebook.profile.ProfileActions.seeNextPhoto"
