@@ -2,6 +2,7 @@ package io.crypto.beer.telegram.bot.business.instagram.entity;
 
 import com.restfb.Connection;
 import com.restfb.types.Photo;
+import com.restfb.types.Post;
 import com.restfb.types.User;
 import lombok.Builder;
 import lombok.Data;
@@ -32,4 +33,8 @@ public class FacebookSession {
     //Current account photos
     private Connection<Photo> currentUserPhotos;
     private Integer currentUserPhotoIndex;
+
+    //Current account feed
+    private Connection<Post> currentUserFeed;
+    private Integer currentUserFeedIndex;
 }

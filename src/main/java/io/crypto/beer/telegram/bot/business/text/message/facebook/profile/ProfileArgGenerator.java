@@ -2,6 +2,7 @@ package io.crypto.beer.telegram.bot.business.text.message.facebook.profile;
 
 import com.google.inject.internal.cglib.core.internal.$CustomizerRegistry;
 import com.restfb.types.Photo;
+import com.restfb.types.Post;
 import io.crypto.beer.telegram.bot.engine.entity.Session;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -32,7 +33,7 @@ public final class ProfileArgGenerator {
     }
 
     public static Object[] getPhotos(Session session) {
-        log.info("Call ProfileArgGenerator method getMainPageArgs");
+        log.info("Call ProfileArgGenerator method getPhotos");
         Integer index = session.getFacebookSession().getCurrentUserPhotoIndex();
         if (index == null) System.out.println("CURRENT USER DONT HAVE PHOTOS");
         Photo currentPhoto = session.getFacebookSession().getCurrentUserPhotos().getData().get(index);
@@ -46,4 +47,22 @@ public final class ProfileArgGenerator {
         };
     }
 
+    public static Object[] getFeed(Session session) {
+        log.info("Call ProfileArgGenerator method getFeed");
+        Integer index = session.getFacebookSession().getCurrentUserFeedIndex();
+        if (index == null) System.out.println("CURRENT USER DONT HAVE POSTS IN FEED");
+        Post currentPost = session.getFacebookSession().getCurrentUserFeed().getData().get(index);
+        return new Object[]{
+                currentPost.getFullPicture(),
+                currentPost.getFrom().getName(),
+                currentPost.getMessage(),
+                currentPost.getCaption(),
+                currentPost.getCreatedTime(),
+                currentPost.getCreatedTime(),
+                currentPost.getPlace() == null ? null : currentPost.getPlace().getName(),
+                currentPost.getAttachments().getData().get(0).getTitle(),
+                currentPost.getAttachments().getData().get(0).getDescription(),
+                currentPost.getAttachments().getData().get(0).getUrl()
+        };
+    }
 }

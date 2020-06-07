@@ -30,7 +30,7 @@
 				"label": {
 					"key":"keyboard.facebook.profile.feed"
 				},
-				"next": "facebook/profile/feed.json",
+				"next": "facebook/profile/feed1.json",
 				"action": "facebook.profile.ProfileActions.getFeed"
 			}
 		],

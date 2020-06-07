@@ -1,0 +1,35 @@
+{
+	"text": {
+		"key": "message.facebook.profile.feed",
+		"argGenerationMethodPath": "facebook.profile.ProfileArgGenerator.getFeed"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "FACEBOOK/PROFILE/FEED/PREV",
+				"label": {
+					"key":"keyboard.facebook.profile.feed.prev"
+				},
+				"next": "facebook/profile/feed1.json",
+				"action": "facebook.profile.ProfileActions.seePrevFeed"
+			},
+			{
+				"id": "FACEBOOK/PROFILE/FEED/NEXT",
+				"label": {
+					"key":"keyboard.facebook.profile.feed.next"
+				},
+				"next": "facebook/profile/feed1.json",
+				"action": "facebook.profile.ProfileActions.seeNextFeed"
+			}
+		],
+		[
+			{
+				"id": "BACK",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "facebook/profile/main.json"
+			}
+		]
+	]
+}

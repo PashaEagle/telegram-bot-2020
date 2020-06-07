@@ -3,6 +3,7 @@ package io.crypto.beer.telegram.bot.business.action.facebook.profile;
 import com.restfb.Connection;
 import com.restfb.Parameter;
 import com.restfb.types.Photo;
+import com.restfb.types.Post;
 import com.restfb.types.User;
 import io.crypto.beer.telegram.bot.business.action.facebook.configuration.FacebookConfig;
 import io.crypto.beer.telegram.bot.business.instagram.entity.FacebookSession;
@@ -82,6 +83,51 @@ public final class ProfileActions {
         }
 
         m.getSession().getFacebookSession().setCurrentUserPhotoIndex(index);
+    }
+
+    public static void getFeed(Message m, ApplicationContext ctx) {
+        log.info("Call ProfileActions method getFeed");
+        if (m.getSession().getFacebookSession().getCurrentUser() == null) {
+            System.out.println("FATAL ERROR FATAL ERROR CURRENT USER CANNOT BE NULL!");
+            throw new RuntimeException("FATAL ERROR FATAL ERROR CURRENT USER CANNOT BE NULL!");
+        }
+        Connection<Post> feed = FacebookConfig.userFacebookClient.fetchConnection(m.getSession().getFacebookSession().getCurrentUserId() + "/feed", Post.class,
+                Parameter.with("fields", "description,created_time,from,full_picture,link,message,name,place,type,caption,attachments{description,title,url}"));
+        System.out.println("Received response on get user feed");
+        System.out.println(feed.getData().size());
+        m.getSession().getFacebookSession().setCurrentUserFeed(feed);
+        if (feed.getData().isEmpty()) m.getSession().getFacebookSession().setCurrentUserFeedIndex(null);
+        else m.getSession().getFacebookSession().setCurrentUserFeedIndex(0);
+    }
+
+    public static void seePrevFeed(Message m, ApplicationContext ctx) {
+        log.info("Call ProfileActions method seePrevFeed");
+
+        Connection<Post> feed = m.getSession().getFacebookSession().getCurrentUserFeed();
+        Integer index = m.getSession().getFacebookSession().getCurrentUserFeedIndex();
+
+        if (index == 0) { //if first in list
+            index = feed.getData().size() - 1;
+        } else {
+            index--;
+        }
+
+        m.getSession().getFacebookSession().setCurrentUserFeedIndex(index);
+    }
+
+    public static void seeNextFeed(Message m, ApplicationContext ctx) {
+        log.info("Call ProfileActions method seeNextFeed");
+
+        Connection<Post> feed = m.getSession().getFacebookSession().getCurrentUserFeed();
+        Integer index = m.getSession().getFacebookSession().getCurrentUserFeedIndex();
+
+        if (index == feed.getData().size() - 1) { //if last in list
+            index = 0;
+        } else {
+            index++;
+        }
+
+        m.getSession().getFacebookSession().setCurrentUserFeedIndex(index);
     }
 
 }
