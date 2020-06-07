@@ -1,0 +1,26 @@
+{
+	"text": {
+		"key": "message.facebook.start"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "FACEBOOK/LOGIN",
+				"label": {
+					"key": "keyboard.facebook.login"
+				},
+				"next": "facebook/login/main.json",
+				"action": "facebook.login.LoginActions.startLoginAction"
+			}
+		],
+		[
+			{
+				"id": "START",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "start.json"
+			}
+		]
+	]
+}

@@ -16,10 +16,6 @@ public class Starter {
 
     @PostConstruct
     public void start() {
-        String loginDialogUrlString = defaultFacebookClient.getLoginDialogUrl(
-                FacebookConfig.APP_ID,
-                FacebookConfig.REDIRECT_URI,
-                defaultScopeBuilder);
-        System.out.println("url: " + loginDialogUrlString);
+
     }
 }

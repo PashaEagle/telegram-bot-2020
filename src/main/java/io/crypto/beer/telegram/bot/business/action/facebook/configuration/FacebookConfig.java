@@ -15,6 +15,7 @@ public class FacebookConfig {
     public static String APP_ID;
     public static String APP_SECRET;
     public static String REDIRECT_URI;
+    public static String ACCESS_TOKEN;
     public static FacebookClient userFacebookClient;
     public static FacebookClient appFacebookClient;
 

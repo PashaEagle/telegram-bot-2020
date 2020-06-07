@@ -2,6 +2,7 @@ package io.crypto.beer.telegram.bot.business.action;
 
 import io.crypto.beer.telegram.bot.business.db.model.AccountModel;
 import io.crypto.beer.telegram.bot.business.db.repository.AccountRepository;
+import io.crypto.beer.telegram.bot.business.instagram.entity.FacebookSession;
 import io.crypto.beer.telegram.bot.business.instagram.entity.InstagramSession;
 import org.brunocvcunha.instagram4j.Instagram4j;
 import org.springframework.context.ApplicationContext;
@@ -21,6 +22,11 @@ public final class StartActions {
         if (m.getSession().getInstagramSession() == null) {
             m.getSession().setInstagramSession(InstagramSession.builder().instagram4j(Instagram4j.builder().build()).build());
             log.info("New instagram session object set");
+        }
+
+        if (m.getSession().getFacebookSession() == null) {
+            m.getSession().setFacebookSession((FacebookSession.builder().build()));
+            log.info("New facebook session object set");
         }
     }
 

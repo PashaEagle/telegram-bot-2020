@@ -1,0 +1,17 @@
+{
+	"text": {
+		"key": "message.facebook.profile.details",
+		"argGenerationMethodPath": "facebook.profile.ProfileArgGenerator.getDetails"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "BACK",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "facebook/profile/main.json"
+			}
+		]
+	]
+}

@@ -1,0 +1,16 @@
+{
+	"text": {
+		"key": "message.facebook.menu.search"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "START",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "facebook/menu/main.json"
+			}
+		]
+	]
+}

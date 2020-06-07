@@ -1,0 +1,45 @@
+{
+	"text": {
+		"key": "message.facebook.menu.start",
+		"argGenerationMethodPath": "facebook.menu.MenuArgGenerator.getMainPageArgs"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "FACEBOOK/PROFILE/MY-PROFILE",
+				"label": {
+					"key":"keyboard.facebook.menu.my-profile"
+				},
+				"next": "facebook/profile/main.json",
+				"action": "facebook.profile.ProfileActions.myProfile"
+			}
+		],
+		[
+			{
+				"id": "FACEBOOK/PROFILE/SEARCH-USER",
+				"label": {
+					"key":"keyboard.facebook.menu.search-user"
+				},
+				"next": "facebook/menu/search.json"
+			}
+		],
+		[
+			{
+				"id": "FACEBOOK/PROFILE/MAKE-POST",
+				"label": {
+					"key":"keyboard.facebook.menu.make-post"
+				},
+				"next": "facebook/menu/make-post.json"
+			}
+		],
+		[
+			{
+				"id": "START",
+				"label": {
+					"key":"keyboard.facebook.logout"
+				},
+				"next": "start.json"
+			}
+		]
+	]
+}

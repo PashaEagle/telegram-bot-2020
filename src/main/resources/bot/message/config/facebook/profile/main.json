@@ -1,0 +1,67 @@
+{
+	"text": {
+		"key": "message.facebook.profile.start",
+		"argGenerationMethodPath": "facebook.profile.ProfileArgGenerator.getMainPageArgs"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "FACEBOOK/PROFILE/DETAILS",
+				"label": {
+					"key":"keyboard.facebook.profile.details"
+				},
+				"next": "facebook/profile/details.json",
+				"action": "facebook.profile.ProfileActions.getDetails"
+			}
+		],
+		[
+			{
+				"id": "FACEBOOK/PROFILE/PHOTOS",
+				"label": {
+					"key":"keyboard.facebook.profile.photos"
+				},
+				"next": "facebook/profile/photos.json",
+				"action": "facebook.profile.ProfileActions.getPhotos"
+			}
+		],
+		[
+			{
+				"id": "FACEBOOK/PROFILE/FEED",
+				"label": {
+					"key":"keyboard.facebook.profile.feed"
+				},
+				"next": "facebook/profile/feed.json",
+				"action": "facebook.profile.ProfileActions.getFeed"
+			}
+		],
+		[
+			{
+				"id": "FACEBOOK/PROFILE/LIKES",
+				"label": {
+					"key":"keyboard.facebook.profile.likes"
+				},
+				"next": "facebook/profile/likes.json",
+				"action": "facebook.profile.ProfileActions.getGroups"
+			}
+		],
+		[
+			{
+				"id": "FACEBOOK/PROFILE/FRIENDS",
+				"label": {
+					"key":"keyboard.facebook.profile.friends"
+				},
+				"next": "facebook/profile/friends.json",
+				"action": "facebook.profile.ProfileActions.getFriends"
+			}
+		],
+		[
+			{
+				"id": "START",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "facebook/menu/main.json"
+			}
+		]
+	]
+}

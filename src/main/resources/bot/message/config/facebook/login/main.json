@@ -1,0 +1,27 @@
+{
+	"text": {
+		"key": "message.facebook.login.url",
+		"argGenerationMethodPath": "facebook.login.LoginArgGenerator.getArgs"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "FACEBOOK/LOGIN/AUTH",
+				"label": {
+					"key":"keyboard.facebook.login.check"
+				},
+				"next": "facebook/menu/main.json",
+				"action": "facebook.login.LoginActions.authorize"
+			}
+		],
+		[
+			{
+				"id": "FACEBOOK/START",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "facebook/start.json"
+			}
+		]
+	]
+}

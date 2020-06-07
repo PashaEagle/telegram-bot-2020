@@ -1,0 +1,16 @@
+{
+	"text": {
+		"key": "message.facebook.menu.make-post"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "START",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "facebook/menu/main.json"
+			}
+		]
+	]
+}

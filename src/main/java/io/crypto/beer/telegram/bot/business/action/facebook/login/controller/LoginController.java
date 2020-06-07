@@ -26,6 +26,8 @@ public class LoginController {
                 defaultFacebookClient.obtainExtendedAccessToken(FacebookConfig.APP_ID,
                         FacebookConfig.APP_SECRET, shortLivedToken);
 
+        FacebookConfig.ACCESS_TOKEN = extendedAccessToken.getAccessToken();
+
         System.out.println("My extended access token: " + extendedAccessToken);
         FacebookConfig.userFacebookClient = defaultFacebookClient.createClientWithAccessToken(extendedAccessToken.getAccessToken());
         String appAccessToken = defaultFacebookClient.obtainAppAccessToken(FacebookConfig.APP_ID, FacebookConfig.APP_SECRET).getAccessToken();
@@ -33,8 +35,6 @@ public class LoginController {
         FacebookConfig.appFacebookClient = defaultFacebookClient.createClientWithAccessToken(appAccessToken);
         System.out.println("New extended access token set to the facebook4j bean");
         User user = FacebookConfig.userFacebookClient.fetchObject("me", User.class, Parameter.with("fields", "email,name,birthday"));
-//        Page page = FacebookConfig.userFacebookClient.fetchObject("cocacola", Page.class,
-//                Parameter.with("fields", "fan_count"));
         System.out.println(user.toString());
         System.out.println(user.getName());
     }
