@@ -42,4 +42,9 @@ public class FacebookSession {
     //Current account groups
     private Connection<Page> currentUserGroups;
     private Integer currentUserGroupIndex;
+
+    //Current account friends
+    private Connection<User> currentUserFriends;
+    private Integer currentUserFriendIndex;
+    private String currentUserFriendIndexPictureUrl;
 }

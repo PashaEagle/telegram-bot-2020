@@ -4,6 +4,7 @@ import com.google.inject.internal.cglib.core.internal.$CustomizerRegistry;
 import com.restfb.types.Page;
 import com.restfb.types.Photo;
 import com.restfb.types.Post;
+import com.restfb.types.User;
 import io.crypto.beer.telegram.bot.engine.entity.Session;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -40,9 +41,9 @@ public final class ProfileArgGenerator {
         Photo currentPhoto = session.getFacebookSession().getCurrentUserPhotos().getData().get(index);
         return new Object[]{
                 currentPhoto.getImages().get(0).getSource(),
-                currentPhoto.getFrom().getName(),
-                currentPhoto.getAlbum().getName(),
-                currentPhoto.getPlace().getName(),
+                currentPhoto.getFrom() != null ? currentPhoto.getFrom().getName() : null,
+                currentPhoto.getAlbum() != null ? currentPhoto.getAlbum().getName() : null,
+                currentPhoto.getPlace() != null ? currentPhoto.getPlace().getName() : null,
                 currentPhoto.getCreatedTime(),
                 currentPhoto.getLink()
         };
@@ -55,15 +56,15 @@ public final class ProfileArgGenerator {
         Post currentPost = session.getFacebookSession().getCurrentUserFeed().getData().get(index);
         return new Object[]{
                 currentPost.getFullPicture(),
-                currentPost.getFrom().getName(),
+                currentPost.getFrom() != null ? currentPost.getFrom().getName() : null,
                 currentPost.getMessage(),
                 currentPost.getCaption(),
                 currentPost.getCreatedTime(),
                 currentPost.getCreatedTime(),
                 currentPost.getPlace() == null ? null : currentPost.getPlace().getName(),
-                currentPost.getAttachments().getData().get(0).getTitle(),
-                currentPost.getAttachments().getData().get(0).getDescription(),
-                currentPost.getAttachments().getData().get(0).getUrl()
+                currentPost.getAttachments() == null || currentPost.getAttachments().getData().isEmpty() ? null : currentPost.getAttachments().getData().get(0).getTitle(),
+                currentPost.getAttachments() == null || currentPost.getAttachments().getData().isEmpty() ? null : currentPost.getAttachments().getData().get(0).getDescription(),
+                currentPost.getAttachments() == null || currentPost.getAttachments().getData().isEmpty() ? null : currentPost.getAttachments().getData().get(0).getUrl()
         };
     }
 
@@ -91,4 +92,16 @@ public final class ProfileArgGenerator {
                 page.getLink()
         };
     }
+
+    public static Object[] getFriends(Session session) {
+        log.info("Call ProfileArgGenerator method getFriends");
+        Integer index = session.getFacebookSession().getCurrentUserFriendIndex();
+        if (index == null) System.out.println("CURRENT USER DONT HAVE FRIENDS THAT ARE USING THIS BOT");
+        User user = session.getFacebookSession().getCurrentUserFriends().getData().get(index);
+        return new Object[]{
+                user.getName(),
+                session.getFacebookSession().getCurrentUserFriendIndexPictureUrl()
+        };
+    }
+
 }

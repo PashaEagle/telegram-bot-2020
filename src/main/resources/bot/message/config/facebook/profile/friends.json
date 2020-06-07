@@ -1,25 +1,35 @@
 {
 	"text": {
-		"key": "message.facebook.profile.groups",
-		"argGenerationMethodPath": "facebook.profile.ProfileArgGenerator.getGroups"
+		"key": "message.facebook.profile.friends",
+		"argGenerationMethodPath": "facebook.profile.ProfileArgGenerator.getFriends"
 	},
 	"callbacks": [
 		[
 			{
-				"id": "FACEBOOK/PROFILE/GROUPS/PREV",
+				"id": "FACEBOOK/PROFILE/FRIENDS/PROFILE",
+				"label": {
+					"key":"keyboard.facebook.profile.friends.profile"
+				},
+				"next": "facebook/profile/main.json",
+				"action": "facebook.profile.ProfileActions.openProfile"
+			}
+		],
+		[
+			{
+				"id": "FACEBOOK/PROFILE/FRIENDS/PREV",
 				"label": {
 					"key":"keyboard.facebook.profile.prev"
 				},
-				"next": "facebook/profile/groups.json",
-				"action": "facebook.profile.ProfileActions.seePrevGroup"
+				"next": "facebook/profile/friends.json",
+				"action": "facebook.profile.ProfileActions.seePrevFriend"
 			},
 			{
-				"id": "FACEBOOK/PROFILE/GROUPS/NEXT",
+				"id": "FACEBOOK/PROFILE/FRIENDS/NEXT",
 				"label": {
 					"key":"keyboard.facebook.profile.next"
 				},
-				"next": "facebook/profile/groups.json",
-				"action": "facebook.profile.ProfileActions.seeNextGroup"
+				"next": "facebook/profile/friends.json",
+				"action": "facebook.profile.ProfileActions.seeNextFriend"
 			}
 		],
 		[
