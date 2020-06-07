@@ -39,8 +39,10 @@ public final class LoginActions {
         String profilePicUrl = "https://graph.facebook.com/v7.0/" + loggedUser.getId() + "/picture?fields=url&width=1000&height=1000&access_token=" + FacebookConfig.ACCESS_TOKEN;
         m.getSession().getFacebookSession().setLoggedUser(loggedUser);
         m.getSession().getFacebookSession().setLoggedUserPictureUrl(profilePicUrl);
+        m.getSession().getFacebookSession().setLoggedUserId(loggedUser.getId());
         m.getSession().getFacebookSession().setCurrentUser(loggedUser);
         m.getSession().getFacebookSession().setCurrentUserPictureUrl(profilePicUrl);
+        m.getSession().getFacebookSession().setCurrentUserId(loggedUser.getId());
         System.out.println("Facebook session logged user picture url = " + m.getSession().getFacebookSession().getLoggedUserPictureUrl());
     }
 

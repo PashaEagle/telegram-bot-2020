@@ -1,0 +1,35 @@
+{
+	"text": {
+		"key": "message.facebook.profile.photos",
+		"argGenerationMethodPath": "facebook.profile.ProfileArgGenerator.getPhotos"
+	},
+	"callbacks": [
+		[
+			{
+				"id": "FACEBOOK/PROFILE/PHOTOS/PREV",
+				"label": {
+					"key":"keyboard.facebook.profile.photos.prev"
+				},
+				"next": "facebook/profile/photos.json",
+				"action": "facebook.profile.ProfileActions.seePrevPhoto"
+			},
+			{
+				"id": "FACEBOOK/PROFILE/PHOTOS/NEXT",
+				"label": {
+					"key":"keyboard.facebook.profile.photos.next"
+				},
+				"next": "facebook/profile/photos.json",
+				"action": "facebook.profile.ProfileActions.seeNextPhoto"
+			}
+		],
+		[
+			{
+				"id": "BACK",
+				"label": {
+					"key":"keyboard.back"
+				},
+				"next": "facebook/profile/main.json"
+			}
+		]
+	]
+}
