@@ -93,8 +93,10 @@ public final class ProfileActions {
             throw new RuntimeException("FATAL ERROR FATAL ERROR CURRENT USER CANNOT BE NULL!");
         }
         Connection<Post> feed =
-                FacebookConfig.userFacebookClient.fetchConnection(m.getSession().getFacebookSession().getCurrentUserId() + "/feed", Post.class,
-                        Parameter.with("fields", "description,created_time,from,full_picture,link,message,name,place," +
+                FacebookConfig.userFacebookClient.fetchConnection(
+                        m.getSession().getFacebookSession().getCurrentUserId() + "/feed", Post.class,
+                        Parameter.with("fields", "description,created_time,from,full_picture," +
+                                "link,message,name,place," +
                                 "type," +
                                 "caption,attachments{description,title,url}"));
         System.out.println("Received response on get user feed");
@@ -196,7 +198,8 @@ public final class ProfileActions {
         if (users.getData().isEmpty()) m.getSession().getFacebookSession().setCurrentUserFriendIndex(null);
         else {
             m.getSession().getFacebookSession().setCurrentUserFriendIndex(0);
-            String profilePicUrl = "https://graph.facebook.com/v7.0/" + m.getSession().getFacebookSession().getCurrentUserFriends().getData().get(0).getId() + "/picture?fields=url&width=1000&height=1000&access_token=" + FacebookConfig.ACCESS_TOKEN;
+            String profilePicUrl =
+                    "https://graph.facebook.com/v7.0/" + m.getSession().getFacebookSession().getCurrentUserFriends().getData().get(0).getId() + "/picture?fields=url&width=1000&height=1000&access_token=" + FacebookConfig.ACCESS_TOKEN;
             m.getSession().getFacebookSession().setCurrentUserFriendIndexPictureUrl(profilePicUrl);
         }
     }
@@ -212,7 +215,8 @@ public final class ProfileActions {
         } else {
             index--;
         }
-        String profilePicUrl = "https://graph.facebook.com/v7.0/" + users.getData().get(index).getId() + "/picture?fields=url&width=1000&height=1000&access_token=" + FacebookConfig.ACCESS_TOKEN;
+        String profilePicUrl = "https://graph.facebook.com/v7.0/" + users.getData().get(index).getId() + "/picture" +
+                "?fields=url&width=1000&height=1000&access_token=" + FacebookConfig.ACCESS_TOKEN;
         m.getSession().getFacebookSession().setCurrentUserFriendIndexPictureUrl(profilePicUrl);
         m.getSession().getFacebookSession().setCurrentUserFriendIndex(index);
     }
@@ -228,7 +232,8 @@ public final class ProfileActions {
         } else {
             index++;
         }
-        String profilePicUrl = "https://graph.facebook.com/v7.0/" + users.getData().get(index).getId() + "/picture?fields=url&width=1000&height=1000&access_token=" + FacebookConfig.ACCESS_TOKEN;
+        String profilePicUrl = "https://graph.facebook.com/v7.0/" + users.getData().get(index).getId() + "/picture" +
+                "?fields=url&width=1000&height=1000&access_token=" + FacebookConfig.ACCESS_TOKEN;
         m.getSession().getFacebookSession().setCurrentUserFriendIndexPictureUrl(profilePicUrl);
         m.getSession().getFacebookSession().setCurrentUserFriendIndex(index);
     }
