@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum KeyboardPath {
 
-    BASE_PATH("src/main/resources/bot/message/config/"),
+    BASE_PATHS("src/main/resources/bot/message/config/"),
 
     LOGIN_MAIN_PAGE("instagram/login/main.json"),
     LOGIN_VERIFICATION("instagram/login/confirmation.json"),

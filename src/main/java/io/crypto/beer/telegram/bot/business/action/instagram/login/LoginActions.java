@@ -1,5 +1,6 @@
 package io.crypto.beer.telegram.bot.business.action.instagram.login;
 
+import io.crypto.beer.telegram.bot.business.action.facebook.configuration.FacebookConfig;
 import io.crypto.beer.telegram.bot.business.constant.KeyboardPath;
 import io.crypto.beer.telegram.bot.business.db.model.AccountModel;
 import io.crypto.beer.telegram.bot.business.db.repository.AccountRepository;
@@ -36,7 +37,7 @@ public final class LoginActions {
 
         m.getSession().getInstagramSession().setAccountName(m.getSession().getInputData());
         log.info("Validation success -> name changed: {}", m.getSession().getInstagramSession().getAccountName());
-        ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s", KeyboardPath.BASE_PATH.getPath(),
+        ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s", FacebookConfig.keyboardBasePath,
                 KeyboardPath.LOGIN_MAIN_PAGE.getPath()));
     }
 
@@ -45,7 +46,7 @@ public final class LoginActions {
 
         m.getSession().getInstagramSession().setPassword(m.getSession().getInputData());
         log.info("Validation success -> password changed: {}", m.getSession().getInstagramSession().getPassword());
-        ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s", KeyboardPath.BASE_PATH.getPath(),
+        ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s", FacebookConfig.keyboardBasePath,
                 KeyboardPath.LOGIN_MAIN_PAGE.getPath()));
     }
 
@@ -214,7 +215,7 @@ public final class LoginActions {
             System.out.println(instagramLoginResult.getLogged_in_user());
 
             ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s",
-                    KeyboardPath.BASE_PATH.getPath(),
+                    FacebookConfig.keyboardBasePath,
                     KeyboardPath.LOGIN_SUCCESS.getPath()));
             m.getSession().getInstagramSession().setInstagramLoginResult(instagramLoginResult);
 
@@ -249,7 +250,7 @@ public final class LoginActions {
                 if (doReAuthentication) {
                     savedInstagramLoginResult = instagramLoginResult;
                     ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s",
-                            KeyboardPath.BASE_PATH.getPath(),
+                            FacebookConfig.keyboardBasePath,
                             KeyboardPath.LOGIN_VERIFICATION.getPath()));
                 }
             } else if (Objects.equals(instagramLoginResult.getError_type(), "bad_password")) {
@@ -311,7 +312,7 @@ public final class LoginActions {
     private static void setNewKeyboardWithErrorAndSetMessage(Message m, String errorMessage) {
         System.out.println(errorMessage);
         LoginArgGenerator.ERROR_MESSAGE = errorMessage;
-        ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s", KeyboardPath.BASE_PATH.getPath(),
+        ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s", FacebookConfig.keyboardBasePath,
                 KeyboardPath.LOGIN_ERROR.getPath()));
     }
 }

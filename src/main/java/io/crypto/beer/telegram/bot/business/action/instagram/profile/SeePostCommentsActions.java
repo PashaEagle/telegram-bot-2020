@@ -1,5 +1,6 @@
 package io.crypto.beer.telegram.bot.business.action.instagram.profile;
 
+import io.crypto.beer.telegram.bot.business.action.facebook.configuration.FacebookConfig;
 import io.crypto.beer.telegram.bot.business.constant.KeyboardPath;
 import io.crypto.beer.telegram.bot.engine.entity.Message;
 import io.crypto.beer.telegram.bot.engine.services.ResourceHandlerService;
@@ -50,7 +51,7 @@ public final class SeePostCommentsActions {
         }
 
         ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s",
-                KeyboardPath.BASE_PATH.getPath(),
+                FacebookConfig.keyboardBasePath,
                 KeyboardPath.SEE_POSTS_VIEW.getPath()));
     }
 
@@ -78,7 +79,7 @@ public final class SeePostCommentsActions {
         }
 
         ResourceHandlerService.fillMessageConfig(m.getSession(), String.format("%s%s",
-                KeyboardPath.BASE_PATH.getPath(),
+                FacebookConfig.keyboardBasePath,
                 KeyboardPath.FIND_POST_VIEW.getPath()));
     }
 

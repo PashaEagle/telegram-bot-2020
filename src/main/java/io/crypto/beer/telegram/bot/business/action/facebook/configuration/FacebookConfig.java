@@ -16,6 +16,7 @@ public class FacebookConfig {
     public static String APP_SECRET;
     public static String REDIRECT_URI;
     public static String ACCESS_TOKEN;
+    public static String keyboardBasePath;
     public static FacebookClient userFacebookClient;
     public static FacebookClient appFacebookClient;
 
@@ -32,6 +33,11 @@ public class FacebookConfig {
     @Value("${facebook.redirect.uri}")
     public void setRedirectUri(String redirectUri) {
         FacebookConfig.REDIRECT_URI = redirectUri;
+    }
+
+    @Value("${message.config.path}")
+    public void setKeyboardBasePath(String path) {
+        FacebookConfig.keyboardBasePath = path;
     }
 
     @Bean
