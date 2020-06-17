@@ -1,21 +1,17 @@
-#1
-FROM gradle:4.6-jdk8-alpine AS build
+FROM gradle:5.4.1-jdk8 AS BUILD_IMAGE
 
-COPY . /home/source/java
-WORKDIR /home/source/java
+RUN mkdir /apps
+COPY --chown=gradle:gradle . /apps
+WORKDIR /apps
 
-USER root
-RUN chown -R gradle /home/source/java
-
-USER gradle
-RUN gradle clean build 
+RUN gradle clean build
 
 #2
-FROM openjdk:8
+FROM openjdk:8-jre
+COPY --from=BUILD_IMAGE /apps/build/libs/telegram-bot-core.jar .
+RUN mkdir keyboards
+COPY src/main/resources/bot/message/config keyboards/ 
 
-WORKDIR /home/application/java
+COPY startup.sh .
 
-COPY --from=build "/home/source/java/build/libs/telegram-bot.jar" .
-EXPOSE 8080
-
-ENTRYPOINT [ "java", "-jar", "/home/application/java/telegram-bot.jar", "--spring.profiles.active="]
+CMD bash startup.sh
